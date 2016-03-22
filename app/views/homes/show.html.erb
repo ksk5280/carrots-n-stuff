@@ -42,17 +42,91 @@
 
 <div class="text-center row">
   <div class="padded-top padded-bottom">
-    <h1 class="green-font" >Featured Collections</h1>
+    <h1 class="green-font" >Featured Markets</h1>
   </div>
-  <div class="categories">
-    <%= render partial: "categories/category", collection: @categories %>
+  <!-- <div class="categories">
+    <%#=# render partial: "categories/category", collection: @categories %>
+  </div> -->
+  <div class="col-md-4">
+    <div class="item-display category-display">
+      <img src="http://billevansins.com/wp-content/uploads/2014/04/palouse-farm-country-eastern-washington.jpg" alt="Smiley face" height="100" width="100">
+      <div class="item-description text-center">
+        <div class="btn-font-size green-font">
+          <h4>"Mister's Market"</h4>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="col-md-4">
+    <div class="item-display category-display">
+      <img src="http://billevansins.com/wp-content/uploads/2014/04/palouse-farm-country-eastern-washington.jpg" alt="Smiley face" height="100" width="100">
+      <div class="item-description text-center">
+        <div class="btn-font-size green-font">
+          <h4>"Mister's Market"</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="item-display category-display">
+      <img src="http://billevansins.com/wp-content/uploads/2014/04/palouse-farm-country-eastern-washington.jpg" alt="Smiley face" height="100" width="100">
+      <div class="item-description text-center">
+        <div class="btn-font-size green-font">
+          <h4>"Mister's Market"</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 <div class="text-center row">
   <div class="padded-bottom padded-top">
     <h1 class="green-font" >Featured Items</h1>
   </div>
-  <div class="items">
-    <%= render partial: "items/item", collection: @items %>
-  </div>
+  <!-- <div class="items">
+    <%#=# render partial: "items/item", collection: @items %>
+  </div> -->
+  <div class="col-md-4">
+    <div class="item-display">
+      <img src="http://www.fullcircle.com/goodfoodlife/files/2012/05/Arugula_OPT.jpg" alt="Smiley face" height="100" width="100">
+          <h4>Arugula</h4>
+        </div>
+        <div class="btn-pricing">$3.99</div>
+        <%= button_to "Add to Cart", cart_items_path(item_id: item.id),
+            class: "btn item-btn btn-font-size" %>
+      </div>
+    </div>
+
+  <div class="col-md-4">
+    <div class="item-display">
+
+      <div class="col-md-4">
+        <div class="item-display">
+          <img src="http://www.fullcircle.com/goodfoodlife/files/2012/05/Arugula_OPT.jpg" alt="Smiley face" height="100" width="100">
+              <h4>Arugula</h4>
+            </div>
+            <div class="btn-pricing">$3.99</div>
+            <%= button_to "Add to Cart", cart_items_path(item_id: item.id),
+                class: "btn item-btn btn-font-size" %>
+          </div>
+        </div>
+
+    </div>
+
+  <div class="col-md-4">
+    <div class="item-display">
+      <div class="col-md-4">
+        <div class="item-display">
+          <img src="http://www.fullcircle.com/goodfoodlife/files/2012/05/Arugula_OPT.jpg" alt="Smiley face" height="100" width="100">
+              <h4>Arugula</h4>
+            </div>
+            <div class="btn-pricing">$3.99</div>
+            <%= button_to "Add to Cart", cart_items_path(item_id: item.id),
+                class: "btn item-btn btn-font-size" %>
+          </div>
+        </div>
+    </div>
 </div>
