@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stores, as: :stores, path: "/", only: [:index, :new, :create, :edit, :update]
   resources :items, only: [:index, :show, :new, :create]
 
   resources :cart_items, only: [:create, :destroy]
@@ -28,10 +29,9 @@ Rails.application.routes.draw do
   get "/:category", to: "categories#show", as: "category"
 
   ###################
-  
-  resources :stores
+
 
   namespace :stores, as: :store, path: ":store" do
-    resources :items, only: [:index, :show, :new, :create]
+    resources :items, only: [:index, :show] #, :new, :create] do we need these?
   end
 end

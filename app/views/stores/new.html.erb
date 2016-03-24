@@ -1,0 +1,9 @@
+<h1>Create a Store</h1>
+
+<%= form_for @store do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <%= f.submit "Update store" %>
+<% end %>

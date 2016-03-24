@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323202755) do
+ActiveRecord::Schema.define(version: 20160324192059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,10 @@ ActiveRecord::Schema.define(version: 20160323202755) do
     t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "stores", ["user_id"], name: "index_stores_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -93,4 +96,5 @@ ActiveRecord::Schema.define(version: 20160323202755) do
   add_foreign_key "line_items", "items"
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "stores", "users"
 end
