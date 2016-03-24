@@ -24,10 +24,10 @@ RSpec.describe "Cart", type: :model do
     @cart.update_quantity(false, @item)
 
     status, message = @cart.update_quantity(true, @item)
-
+    # binding.pry
     expect(status).to eq(:danger)
     expect(message).to eq("1 #{@item.title} removed from cart!")
-    contents = { "3" => 3, "1" => 1, @item.id.to_s => 1 }
+    contents = {"3" => 4, "1" => 1}
     expect(@cart.contents).to eq contents
   end
 
