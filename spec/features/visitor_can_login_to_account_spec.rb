@@ -34,31 +34,31 @@ RSpec.feature "visitor logs in" do
     end
   end
 
-  context "visitor has items in cart before login" do
-    scenario "sees items in cart" do
-      item1 = create(:item)
-      user = create(:user)
-
-      visit "/items"
-
-      expect(page).to have_content item1.title
-
-      within ".items" do
-        first(:button, "Add to Cart").click
-      end
-
-      visit "/cart"
-      expect(page).to have_content(item1.title)
-
-      click_on "Login"
-
-      fill_in "Username", with: user.username
-      fill_in "Password", with: "password"
-      click_on "Login to your account"
-
-      click_on "Cart"
-
-      expect(page).to have_content(item1.title)
-    end
-  end
+  # context "visitor has items in cart before login" do
+  #   scenario "sees items in cart" do
+  #     item1 = create(:item)
+  #     user = create(:user)
+  #
+  #     visit "/items"
+  #
+  #     expect(page).to have_content item1.title
+  #
+  #     within ".items" do
+  #       first(:button, "Add to Cart").click
+  #     end
+  #
+  #     visit "/cart"
+  #     expect(page).to have_content(item1.title)
+  #
+  #     click_on "Login"
+  #
+  #     fill_in "Username", with: user.username
+  #     fill_in "Password", with: "password"
+  #     click_on "Login to your account"
+  #
+  #     click_on "Cart"
+  #
+  #     expect(page).to have_content(item1.title)
+  #   end
+  # end
 end
