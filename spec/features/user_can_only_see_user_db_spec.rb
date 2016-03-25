@@ -12,6 +12,6 @@ RSpec.feature "user can only see user dashboard" do
     click_on "Login to your account"
 
     expect(current_path).to eq "/dashboard"
-    expect(page).to_not have_content "Store Admin"
+    expect(page).to_not have_content "Store Admin Information"
   end
 end

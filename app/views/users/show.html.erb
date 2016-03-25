@@ -1,193 +1,212 @@
-<h1>Profile information</h1>
+
 <div>
-  <div class="text-center row">
-    <div class="padded-bottom">
-      <h1 class="green-font" >Account Information</h1>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#user_info" aria-controls="user_info" role="tab" data-toggle="tab">User Information</a></li>
+    <% if @user.store_admin? %><li role="presentation"><a href="#store_info" aria-controls="store_info" role="tab" data-toggle="tab">Store Admin Information</a></li> <% end %>
+    <% if @user.platform_admin? %><li role="presentation"><a href="#platform_info" aria-controls="platform_info" role="tab" data-toggle="tab">Platform Admin Information</a></li><% end %>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="user_info">
+      <h1>Profile information</h1>
+      <div>
+        <div class="text-center row">
+          <div class="padded-bottom">
+            <h1 class="green-font" >Account Information</h1>
+            <%= render partial: "shared/user_info", locals: {user: @user} %>
+          </div>
+        </div>
+        <div class="text-center row">
+          <!-- This is where user info and orders goes -->
+
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="store_info">
+      <div>
+        <div class="text-center row">
+          <div class="padded-top">
+            <%#= link_to "Create New Item", new_item_path, class: "btn btn-success btn-font-size margin-top-50" %>
+          </div>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Price
+              </th>
+            </tr>
+            <tr>
+              <td>
+                Bacon
+              </td>
+              <td>
+                $4.00
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Bacon
+              </td>
+              <td>
+                $4.00
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Bacon
+              </td>
+              <td>
+                $4.00
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="text-center row">
+          <div class="padded-top padded-bottom">
+            <h2 class="green-font">All Orders</h1>
+          </div>
+        </div>
+        <div class="orders row">
+          <!-- <table class="table table-condensed table-hover orders-table">
+            <%#= render partial: "admin/orders/status_counts" %>
+            <%#= render partial: "admin/orders/table_headers" %>
+            <%#= render partial: "admin/orders/order", collection: @orders %>
+
+          </table> -->
+
+          <table>
+            <tr>
+              <th>
+                ID
+              </th>
+              <th>
+                Created at
+              </th>
+              <th>
+                Total sale
+              </th>
+            </tr>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                7/10/2016
+              </td>
+              <td>
+                $10.00
+              </td>
+            </tr>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                7/10/2016
+              </td>
+              <td>
+                $10.00
+              </td>
+            </tr>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                7/10/2016
+              </td>
+              <td>
+                $10.00
+              </td>
+            </tr>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                7/10/2016
+              </td>
+              <td>
+                $10.00
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="platform_info">
+
+      <h1>Platform information</h1>
+
+      <table>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Status
+          </th>
+          <th>
+
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Farmer's Market
+          </td>
+          <td>
+            Available
+          </td>
+          <td>
+            AVAILABLE/PENDING/SUSPENDED
+            <!-- Form changing the status of the store -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Farmer's Market
+          </td>
+          <td>
+            Available
+          </td>
+          <td>
+            AVAILABLE/PENDING/SUSPENDED
+            <!-- Form changing the status of the store -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Farmer's Market
+          </td>
+          <td>
+            Available
+          </td>
+          <td>
+            AVAILABLE/PENDING/SUSPENDED
+            <!-- Form changing the status of the store -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Farmer's Market
+          </td>
+          <td>
+            Available
+          </td>
+          <td>
+            AVAILABLE/PENDING/SUSPENDED
+            <!-- Form changing the status of the store -->
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
-  <div class="text-center row">
-    <!-- This is where user info and orders goes -->
 
-  </div>
 </div>
-
-<h1>Store Admin</h1>
-<div>
-  <div class="text-center row">
-    <div class="padded-top">
-      <%#= link_to "Create New Item", new_item_path, class: "btn btn-success btn-font-size margin-top-50" %>
-    </div>
-  </div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          Price
-        </th>
-      </tr>
-      <tr>
-        <td>
-          Bacon
-        </td>
-        <td>
-          $4.00
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Bacon
-        </td>
-        <td>
-          $4.00
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Bacon
-        </td>
-        <td>
-          $4.00
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="text-center row">
-    <div class="padded-top padded-bottom">
-      <h2 class="green-font">All Orders</h1>
-    </div>
-  </div>
-  <div class="orders row">
-    <!-- <table class="table table-condensed table-hover orders-table">
-      <%#= render partial: "admin/orders/status_counts" %>
-      <%#= render partial: "admin/orders/table_headers" %>
-      <%#= render partial: "admin/orders/order", collection: @orders %>
-
-    </table> -->
-
-    <table>
-      <tr>
-        <th>
-          ID
-        </th>
-        <th>
-          Created at
-        </th>
-        <th>
-          Total sale
-        </th>
-      </tr>
-      <tr>
-        <td>
-          1
-        </td>
-        <td>
-          7/10/2016
-        </td>
-        <td>
-          $10.00
-        </td>
-      </tr>
-      <tr>
-        <td>
-          1
-        </td>
-        <td>
-          7/10/2016
-        </td>
-        <td>
-          $10.00
-        </td>
-      </tr>
-      <tr>
-        <td>
-          1
-        </td>
-        <td>
-          7/10/2016
-        </td>
-        <td>
-          $10.00
-        </td>
-      </tr>
-      <tr>
-        <td>
-          1
-        </td>
-        <td>
-          7/10/2016
-        </td>
-        <td>
-          $10.00
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-
-<h1>Platform information</h1>
-
-<table>
-  <tr>
-    <th>
-      Name
-    </th>
-    <th>
-      Status
-    </th>
-    <th>
-
-    </th>
-  </tr>
-  <tr>
-    <td>
-      Farmer's Market
-    </td>
-    <td>
-      Available
-    </td>
-    <td>
-      AVAILABLE/PENDING/SUSPENDED
-      <!-- Form changing the status of the store -->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Farmer's Market
-    </td>
-    <td>
-      Available
-    </td>
-    <td>
-      AVAILABLE/PENDING/SUSPENDED
-      <!-- Form changing the status of the store -->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Farmer's Market
-    </td>
-    <td>
-      Available
-    </td>
-    <td>
-      AVAILABLE/PENDING/SUSPENDED
-      <!-- Form changing the status of the store -->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Farmer's Market
-    </td>
-    <td>
-      Available
-    </td>
-    <td>
-      AVAILABLE/PENDING/SUSPENDED
-      <!-- Form changing the status of the store -->
-    </td>
-  </tr>
-</table>
