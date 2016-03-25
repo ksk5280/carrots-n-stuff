@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :stores, as: :stores, path: "/", only: [:index, :new, :create, :edit, :update]
-  resources :items, only: [:index, :show, :new, :create]
+  #resources :items, only: [:index, :show, :new, :create]
 
   resources :cart_items, only: [:create, :destroy]
   root to: "homes#show"
@@ -32,6 +32,6 @@ Rails.application.routes.draw do
 
 
   namespace :stores, as: :store, path: ":store" do
-    resources :items, only: [:index, :show] #, :new, :create] do we need these?
+    resources :items, only: [:index, :show, :new, :create, :edit, :update]
   end
 end
