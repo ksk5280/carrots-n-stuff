@@ -7,7 +7,9 @@ class Store < ActiveRecord::Base
 
   before_validation :generate_slug
 
+  enum status: %w(pending suspended approved)
+
   def generate_slug
-    self.slug = name.parameterize
+    self.slug = name.parameterize if name
   end
 end

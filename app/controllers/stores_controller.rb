@@ -11,7 +11,8 @@ class StoresController < ApplicationController
   def create
     @store = current_user.stores.new(store_params)
     if @store.save
-      flash[:alert] = "Store successfully created."
+      current_user.roles << Role.find_by(name: "store_admin")
+      flash[:alert] = "Store successfully requested."
       redirect_to dashboard_path
     else
       flash.now[:alert] = "Something went wrong!"
@@ -24,7 +25,6 @@ class StoresController < ApplicationController
   end
 
   def update
-    # kinda sorta functional
     @store = Store.find(params[:id])
     @store.update_attributes(store_params)
     if @store.save
@@ -39,6 +39,6 @@ class StoresController < ApplicationController
   private
 
     def store_params
-      params.require(:store).permit(:name)
+      params.require(:store).permit(:name, :description, :image_url)
     end
 end

@@ -19,10 +19,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @items = Item.all
     @orders = Order.all
+    #TODO link order with store
     @stores = Store.all
-    # TODO link with stores
   end
 
   def edit
