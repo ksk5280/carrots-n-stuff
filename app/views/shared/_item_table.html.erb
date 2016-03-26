@@ -1,3 +1,7 @@
+<% current_user.stores.each do |store| %>
+  <%= store.name %>
+  <%= link_to "Update store", edit_store_path(store.slug), class: "btn btn-success btn-font-size" %>
+<% end %>
 <table class="table">
   <tr>
     <th>Name</th>
