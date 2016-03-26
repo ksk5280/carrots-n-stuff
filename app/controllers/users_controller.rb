@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    @items = Item.all
+    @orders = Order.all
+    @stores = Store.all
+    # TODO link with stores
   end
 
   def edit

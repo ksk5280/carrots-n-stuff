@@ -31,7 +31,12 @@ Item.create(title: "Pot O' Gold", description: "After a good rain, you were luck
 
 Item.create(title: "Four-Leaf Clover", description: "The sun is shining so brightly that spotting this little guy wasn't a matter of luck!", price: 999, image: "https://s3.amazonaws.com/lucky2/four-leaf-clover.png", categories: [Category.find_by(title: "Weather")])
 
-User.create(username: "johndoe", password: "password", role: 0, first_name: "John", last_name: "Doe", address: "1510 Blake Street")
-User.create(username: "janedoe", password: "password", role: 0, first_name: "Jane", last_name: "Doe", address: "1511 Blake Street")
-User.create(username: "user", password: "password", role: 0, first_name: "Tim", last_name: "Finnigan", address: "1234 Walker Street")
-User.create(username: "admin", password: "password", role: 1, first_name: "Anon", last_name: "Ymous", address: "The cloud")
+
+Role.create(name: "register_user")
+Role.create(name: "store_admin")
+Role.create(name: "platform_admin")
+
+User.create(username: "johndoe", password: "password", first_name: "John", last_name: "Doe", address: "1510 Blake Street").roles << Role.find(1)
+User.create(username: "janedoe", password: "password", first_name: "Jane", last_name: "Doe", address: "1511 Blake Street").roles << Role.find(1)
+User.create(username: "user", password: "password", first_name: "Tim", last_name: "Finnigan", address: "1234 Walker Street").roles << [Role.find(1), Role.find(2)]
+User.create(username: "admin", password: "password", first_name: "Anon", last_name: "Ymous", address: "The cloud").roles = [Role.find(1), Role.find(2), Role.find(3)]

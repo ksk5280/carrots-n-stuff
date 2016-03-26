@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :user_role do
+    user nil
+    role nil
+  end
+  factory :role do
+    name
+  end
   factory :store do
     name "MyString"
     slug "MyString"
@@ -19,6 +26,10 @@ FactoryGirl.define do
     first_name "Jane"
     last_name "Doe"
     address "1510 Blake St., Denver, CO, 80202"
+
+    factory :user_with_roles do
+
+    end
   end
   factory :category do
     title
@@ -26,6 +37,10 @@ FactoryGirl.define do
     factory :category_with_items do
       items { create_list(:item, 3) }
     end
+  end
+
+  sequence :name, %w(registered_user store_admin platform_admin).cycle do |name|
+    "#{name}"
   end
 
   sequence :title, %w(1 2 3).cycle do |name|
