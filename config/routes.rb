@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "homes#show"
 
-  resources :stores, only: [:index, :new, :create, :update]
+  resources :stores, only: [:index, :new, :create, :update, :destroy]
   resources :items, only: [:index]
 
   resources :cart_items, only: [:create, :destroy]
