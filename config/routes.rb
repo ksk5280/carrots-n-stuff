@@ -27,11 +27,15 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:index]
 
-  get "/:category", to: "categories#show", as: "category"
+  get "/categories/:category", to: "categories#show", as: "category"
 
   get "/:slug/edit", to: "stores#edit", as: "edit_store"
 
   namespace :stores, path: ":slug", as: :store do
-    resources :items, only: [:index, :show, :new, :create, :edit, :update]
+    get "", to: "items#index", as: "root"
+    # post "/items", to: "items#create", as: "items"
+
+    # get "/item", to: "items#edit", as: "edit_item"
+    resources :items, only: [:show, :new, :destroy, :edit, :create, :update]
   end
 end
