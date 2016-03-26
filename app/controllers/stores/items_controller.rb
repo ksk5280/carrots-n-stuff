@@ -22,7 +22,7 @@ class Stores::ItemsController < Stores::StoresController
     end
     if @item.save
       flash[:alert] = "Item successfully created!"
-      redirect_to dashboard_path(current_user)
+      redirect_to dashboard_path(tab: "store_info")
     else
       flash.now[:alert] = "Something went terribly wrong!"
       render :new
