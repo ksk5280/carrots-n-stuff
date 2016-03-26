@@ -25,13 +25,6 @@ RSpec.feature "user can create a store" do
 
       expect(page).to have_content "Mod Farmers"
       expect(page).to have_content "Status: pending"
-
-
-      # click_on "Update store"
-      # fill_in "Name", with: "Modern Farmers"
-      # click_button "Update store"
-      # expect(current_path).to eq "/dashboard"
-      # expect(page).to have_content("Modern Farmers")
     end
   end
 end
