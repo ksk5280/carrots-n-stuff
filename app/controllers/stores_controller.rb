@@ -16,17 +16,15 @@ class StoresController < ApplicationController
     @store = Store.new(store_params)
     if @store.save
       flash[:alert] = "Store successfully created."
-      redirect_to dashboard_path(current_user)
+      redirect_to dashboard_path
     else
       flash.now[:alert] = "Something went wrong!"
       render :new
     end
-
-
   end
 
   def edit
-    @store = Store.find_by(slug: params[:id])
+    @store = Store.find_by(slug: params[:slug])
   end
 
   def update
@@ -35,7 +33,7 @@ class StoresController < ApplicationController
     @store.update_attributes(store_params)
     if @store.save
       flash[:alert] = "Store successufully updated."
-      redirect_to dashboard_path(current_user)
+      redirect_to dashboard_path
     else
       flash.now[:alert] = "Something went wrong!"
       render :edit

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :stores, as: :stores, path: "/", only: [:index, :new, :create, :edit, :update]
+  root to: "homes#show"
+
+  resources :stores, only: [:index, :new, :create, :update]
   #resources :items, only: [:index, :show, :new, :create]
 
   resources :cart_items, only: [:create, :destroy]
-  root to: "homes#show"
   get "/cart", to: "cart_items#index"
 
   resource :user, only: [:create, :new, :edit, :update, :show]
@@ -30,8 +31,9 @@ Rails.application.routes.draw do
 
   ###################
 
+  get "/:slug/edit", to: "stores#edit", as: "edit_store"
 
-  namespace :stores, as: :store, path: ":store" do
+  namespace :stores, path: ":slug", as: :store do
     resources :items, only: [:index, :show, :new, :create, :edit, :update]
   end
 end

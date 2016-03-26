@@ -1,4 +1,4 @@
-class CartItemsController < ApplicationController
+gbclass CartItemsController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     status, message = @cart.update_quantity(params[:subtract], @item)
