@@ -40,7 +40,7 @@ class Stores::ItemsController < Stores::StoresController
     @categories = Category.all
     if @item.update_attributes(item_params)
       flash[:alert] = "Item updated successfully."
-      redirected_to dashboard_path(current_user)
+      redirect_to dashboard_path
     else
       flash.now[:alert] = "Something went wrong."
       render :edit

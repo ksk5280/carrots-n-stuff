@@ -7,11 +7,13 @@
   <tr>
     <th>Name</th>
     <th>Price</th>
+    <th></th>
   </tr>
   <% items.each do |item| %>
     <tr>
       <td><%= link_to item.title, store_item_path(item.store.slug, item) %></td>
       <td><%= format_price(item.price) %></td>
+      <td><%= link_to "Update Item", edit_store_item_path(item.store.slug, item) %></td>
     </tr>
   <% end %>
 </table>
