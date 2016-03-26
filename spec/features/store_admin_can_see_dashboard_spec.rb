@@ -5,11 +5,12 @@ RSpec.feature "Store admin can see store admin dashboard" do
     user = User.create(username: "bacon", password: "password")
     3.times{create(:role)}
     user.roles << Role.find_by(name: "store_admin")
+    store = Store.create(name: "Farmer's Market")
     Category.create(
       title: "Root veg",
       image: "http://vegnews.com/web/uploads/asset/3143/file/featurette.rootvegetables.jpg"
     )
-    Item.create(
+    store.items.create(
       id: 1000,
       title: "Carrot",
       description: "Lots of carrots everywhere!",

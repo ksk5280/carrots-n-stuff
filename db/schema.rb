@@ -79,7 +79,10 @@ ActiveRecord::Schema.define(version: 20160324223715) do
     t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "stores", ["user_id"], name: "index_stores_on_user_id", using: :btree
 
   create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id"
@@ -108,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160324223715) do
   add_foreign_key "line_items", "items"
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "stores", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end

@@ -21,10 +21,6 @@ class ApplicationController < ActionController::Base
     render file: "public/404" unless authorize?
   end
 
-  def user_orders_path
-    orders_path
-  end
-
   def set_cart
     @cart = Cart.new(session[:cart])
   end
