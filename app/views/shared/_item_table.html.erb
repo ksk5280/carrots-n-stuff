@@ -1,0 +1,12 @@
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  <% items.each do |item| %>
+    <tr>
+      <td><%= link_to item.title, item_path(item) %></td>
+      <td><%= format_price(item.price) %></td>
+    </tr>
+  <% end %>
+</table>

@@ -5,6 +5,19 @@ RSpec.feature "Store admin can see store admin dashboard" do
     user = User.create(username: "bacon", password: "password")
     3.times{create(:role)}
     user.roles << Role.find_by(name: "store_admin")
+    Category.create(
+      title: "Root veg",
+      image: "http://vegnews.com/web/uploads/asset/3143/file/featurette.rootvegetables.jpg"
+    )
+    Item.create(
+      id: 1000,
+      title: "Carrot",
+      description: "Lots of carrots everywhere!",
+      price: 999,
+      image: "https://s3.amazonaws.com/lucky2/cartoon_penny.png",
+      categories: [Category.find_by(title: "Root veg")]
+    )
+    order = Order.create(user_id: user.id, status: "paid")
 
     visit "/login"
     fill_in "Username", with: "bacon"
@@ -15,8 +28,8 @@ RSpec.feature "Store admin can see store admin dashboard" do
 
     click_on "Store Admin Information"
 
-    expect(page).to have_content eq("Order ID: 1")
-    expect(page).to have_content eq("Bacon")
-    expect(page).to have_content eq("$9.99")
+    expect(page).to have_content "##{order.id}"
+    expect(page).to have_content "Carrot"
+    expect(page).to have_content "$9.99"
   end
 end

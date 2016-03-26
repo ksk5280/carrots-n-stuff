@@ -25,187 +25,25 @@
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="store_info">
-      <div>
-        <div class="text-center row">
-          <div class="padded-top">
-            <%#= link_to "Create New Item", new_item_path, class: "btn btn-success btn-font-size margin-top-50" %>
-          </div>
-        </div>
-        <div>
-          <table>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Price
-              </th>
-            </tr>
-            <tr>
-              <td>
-                Bacon
-              </td>
-              <td>
-                $4.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Bacon
-              </td>
-              <td>
-                $4.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Bacon
-              </td>
-              <td>
-                $4.00
-              </td>
-            </tr>
-          </table>
-        </div>
-
+      <h1>Store information</h1>
+      <%= render partial: "shared/item_table", locals: {items: @items} %>
         <div class="text-center row">
           <div class="padded-top padded-bottom">
             <h2 class="green-font">All Orders</h1>
           </div>
         </div>
         <div class="orders row">
-          <!-- <table class="table table-condensed table-hover orders-table">
-            <%#= render partial: "admin/orders/status_counts" %>
-            <%#= render partial: "admin/orders/table_headers" %>
-            <%#= render partial: "admin/orders/order", collection: @orders %>
-
-          </table> -->
-
-          <table>
-            <tr>
-              <th>
-                ID
-              </th>
-              <th>
-                Created at
-              </th>
-              <th>
-                Total sale
-              </th>
-            </tr>
-            <tr>
-              <td>
-                1
-              </td>
-              <td>
-                7/10/2016
-              </td>
-              <td>
-                $10.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                1
-              </td>
-              <td>
-                7/10/2016
-              </td>
-              <td>
-                $10.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                1
-              </td>
-              <td>
-                7/10/2016
-              </td>
-              <td>
-                $10.00
-              </td>
-            </tr>
-            <tr>
-              <td>
-                1
-              </td>
-              <td>
-                7/10/2016
-              </td>
-              <td>
-                $10.00
-              </td>
-            </tr>
+          <table class="table table-condensed table-hover orders-table">
+            <%= render partial: "admin/orders/status_counts" %>
+            <%= render partial: "admin/orders/table_headers" %>
+            <%= render partial: "admin/orders/order", collection: @orders %>
           </table>
         </div>
       </div>
-    </div>
+
     <div role="tabpanel" class="tab-pane" id="platform_info">
-
       <h1>Platform information</h1>
-
-      <table>
-        <tr>
-          <th>
-            Name
-          </th>
-          <th>
-            Status
-          </th>
-          <th>
-
-          </th>
-        </tr>
-        <tr>
-          <td>
-            Farmer's Market
-          </td>
-          <td>
-            Available
-          </td>
-          <td>
-            AVAILABLE/PENDING/SUSPENDED
-            <!-- Form changing the status of the store -->
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Farmer's Market
-          </td>
-          <td>
-            Available
-          </td>
-          <td>
-            AVAILABLE/PENDING/SUSPENDED
-            <!-- Form changing the status of the store -->
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Farmer's Market
-          </td>
-          <td>
-            Available
-          </td>
-          <td>
-            AVAILABLE/PENDING/SUSPENDED
-            <!-- Form changing the status of the store -->
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Farmer's Market
-          </td>
-          <td>
-            Available
-          </td>
-          <td>
-            AVAILABLE/PENDING/SUSPENDED
-            <!-- Form changing the status of the store -->
-          </td>
-        </tr>
-      </table>
+        <%= render partial: "shared/store_table", locals: {stores: @stores} %>
     </div>
   </div>
 
