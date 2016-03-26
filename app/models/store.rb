@@ -1,7 +1,8 @@
 class Store < ActiveRecord::Base
   has_many :items
+  belongs_to :user
 
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
   validates :slug, uniqueness: true
 
   before_validation :generate_slug

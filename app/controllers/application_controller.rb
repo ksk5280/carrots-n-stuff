@@ -23,13 +23,13 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
-  def user_orders_path
-    if current_admin?
-      admin_orders_path
-    else
-      orders_path
-    end
-  end
+  # def user_orders_path
+  #   if current_admin?
+  #     admin_orders_path
+  #   else
+  #     orders_path
+  #   end
+  # end
 
   def set_cart
     @cart = Cart.new(session[:cart])
