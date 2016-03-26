@@ -4,16 +4,12 @@ class StoresController < ApplicationController
     @stores = Store.all
   end
 
-  # def show
-  #  This should probably just be the Store/items#index
-  # end
-
   def new
     @store = Store.new
   end
 
   def create
-    @store = Store.new(store_params)
+    @store = current_user.stores.new(store_params)
     if @store.save
       flash[:alert] = "Store successfully created."
       redirect_to dashboard_path
@@ -43,6 +39,6 @@ class StoresController < ApplicationController
   private
 
     def store_params
-      params.require(:store).permit(:name, :user_id)
+      params.require(:store).permit(:name)
     end
 end

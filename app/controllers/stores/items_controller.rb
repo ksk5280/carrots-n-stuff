@@ -15,6 +15,7 @@ class Stores::ItemsController < Stores::StoresController
 
   def create
     @item = current_store.items.new(item_params)
+    # @item.store_id = current_store.id
     @categories = Category.all
     @item.categories = Category.all.select do |category|
       params[category.title] == "1"
@@ -38,7 +39,6 @@ class Stores::ItemsController < Stores::StoresController
     @item = current_store.items.find_by(id: params[:id])
     @categories = Category.all
     if @item.update_attributes(item_params)
-    # if @item.save
       flash[:alert] = "Item updated successfully."
       redirected_to dashboard_path(current_user)
     else
@@ -50,6 +50,6 @@ class Stores::ItemsController < Stores::StoresController
   private
 
     def item_params
-      params.require(:item).permit(:title, :description, :price, :categories, :store_id)
+      params.require(:item).permit(:title, :description, :price, :categories)
     end
 end

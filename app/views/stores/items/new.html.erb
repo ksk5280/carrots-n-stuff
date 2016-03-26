@@ -20,8 +20,6 @@
 
       <h4><%= f.label :image %></h4>
       <h4><%= f.file_field :image, class: "form-control" %></h4>
-      <%= f.hidden_field :store_id, :value => current_store.id %>
-
 
       <h4><%= f.submit "Create Item", class: "btn btn-success btn-font-size" %></h4>
 

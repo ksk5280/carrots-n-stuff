@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "homes#show"
 
   resources :stores, only: [:index, :new, :create, :update]
-  #resources :items, only: [:index, :show, :new, :create]
+  resources :items, only: [:index]
 
   resources :cart_items, only: [:create, :destroy]
   get "/cart", to: "cart_items#index"
@@ -28,8 +28,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:index]
 
   get "/:category", to: "categories#show", as: "category"
-
-  ###################
 
   get "/:slug/edit", to: "stores#edit", as: "edit_store"
 
