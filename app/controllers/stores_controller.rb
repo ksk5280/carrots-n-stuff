@@ -26,18 +26,28 @@ class StoresController < ApplicationController
 
   def update
     @store = Store.find(params[:id])
-    @store.update_attributes(store_params)
-    if @store.save
-      flash[:alert] = "Store successufully updated."
+    if current_user.platform_admin? && params[:status]
+      @store.status = params[:status].to_i
+      if @store.save
+        flash[:alert] = "Store successfully updated."
+      else
+        flash.now[:alert] = "Something went wrong!"
+      end
       redirect_to dashboard_path
     else
-      flash.now[:alert] = "Something went wrong!"
-      render :edit
+      @store.update_attributes(store_params)
+      if @store.save
+        flash[:alert] = "Store successfully updated."
+        redirect_to dashboard_path
+      else
+        flash.now[:alert] = "Something went wrong!"
+        render :edit
+      end
     end
   end
 
   def destroy
-    
+
     current_user.stores.first.destroy
     UserRole.where(user_id: current_user.id).find_by(role_id: Role.find_by(name: "store_admin").id).destroy
     flash[:alert] = "Store has been successfully deleted."

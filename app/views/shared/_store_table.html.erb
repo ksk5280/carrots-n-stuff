@@ -5,8 +5,20 @@
   </tr>
   <% stores.each do |store| %>
     <tr>
-      <td><%= link_to store.name, store_path(store.name) %></td>
-      <td><%= "Available" %></td>
+      <td><%= link_to store.name, store_root_path(store.slug) %></td>
+      <td><%= store.status.capitalize%></td>
+      <td>
+        <%= form_for(store, method: :patch) do |f| %>
+          <input type="hidden" name="status" value="2">
+          <%= f.submit "Approve" %>
+        <% end %>
+      </td>
+      <td>  
+        <%= form_for(store, method: :patch) do |f| %>
+          <input type="hidden" name="status" value="1">
+          <%= f.submit "Suspend" %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

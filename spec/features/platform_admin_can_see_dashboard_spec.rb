@@ -5,7 +5,7 @@ RSpec.feature "platfom admin can see platform admin dashboard" do
     user = User.create(username: "bacon", password: "password")
     3.times{create(:role)}
     user.roles << Role.find_by(name: "platform_admin")
-    store = Store.create(name: "Farmer's Market")
+    store = Store.create(name: "Farmer's Market", status: 2)
 
     visit "/login"
     fill_in "Username", with: "bacon"
@@ -17,6 +17,6 @@ RSpec.feature "platfom admin can see platform admin dashboard" do
     click_on "Platform Admin Information"
 
     expect(page).to have_content "#{store.name}"
-    expect(page).to have_content "Available"
+    expect(page).to have_content "Approved"
   end
 end
