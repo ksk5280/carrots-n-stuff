@@ -12,10 +12,10 @@ class StoresController < ApplicationController
     @store = current_user.stores.new(store_params)
     if @store.save
       current_user.roles << Role.find_by(name: "store_admin")
-      flash[:alert] = "Store successfully requested."
+      flash[:success] = "Store successfully requested."
       redirect_to dashboard_path
     else
-      flash.now[:alert] = "Something went wrong!"
+      flash.now[:danger] = @store.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -40,17 +40,16 @@ class StoresController < ApplicationController
         flash[:alert] = "Store successfully updated."
         redirect_to dashboard_path
       else
-        flash.now[:alert] = "Something went wrong!"
+        flash.now[:danger] = @store.errors.full_messages.join(", ")
         render :edit
       end
     end
   end
 
   def destroy
-
     current_user.stores.first.destroy
     UserRole.where(user_id: current_user.id).find_by(role_id: Role.find_by(name: "store_admin").id).destroy
-    flash[:alert] = "Store has been successfully deleted."
+    flash[:success] = "Store has been successfully deleted."
     redirect_to dashboard_path
   end
 
