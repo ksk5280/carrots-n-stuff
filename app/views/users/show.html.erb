@@ -3,8 +3,8 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#user_info" aria-controls="user_info" role="tab" data-toggle="tab">User Information</a></li>
-    <% if @user.store_admin? %><li role="presentation"><a href="#store_info" aria-controls="store_info" role="tab" data-toggle="tab">Store Admin Information</a></li> <% end %>
-    <% if @user.platform_admin? %><li role="presentation"><a href="#platform_info" aria-controls="platform_info" role="tab" data-toggle="tab">Platform Admin Information</a></li><% end %>
+    <% if current_user.store_admin? %><li role="presentation"><a href="#store_info" aria-controls="store_info" role="tab" data-toggle="tab">Store Admin Information</a></li> <% end %>
+    <% if current_user.platform_admin? %><li role="presentation"><a href="#platform_info" aria-controls="platform_info" role="tab" data-toggle="tab">Platform Admin Information</a></li><% end %>
   </ul>
 
   <!-- Tab panes -->
@@ -15,7 +15,7 @@
         <div class="text-center row">
           <div class="padded-bottom">
             <h1 class="green-font" >Account Information</h1>
-            <%= render partial: "shared/user_info", locals: {user: @user} %>
+            <%= render partial: "shared/user_info", locals: {user: current_user} %>
           </div>
         </div>
         <div class="text-center row">
@@ -26,7 +26,9 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="store_info">
       <h1>Store information</h1>
-      <%= render partial: "shared/item_table", locals: {items: @items} %>
+      <%= "Status: #{current_user.stores.first.status}" if current_user.stores.first %>
+      <%= link_to "Create item", new_store_item_path(current_user.stores.first.slug) if current_user.stores.first %>
+      <%= render partial: "shared/item_table", locals: {items: current_user.stores.first.items} if current_user.stores.first %>
         <div class="text-center row">
           <div class="padded-top padded-bottom">
             <h2 class="green-font">All Orders</h1>

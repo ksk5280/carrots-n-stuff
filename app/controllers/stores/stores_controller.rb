@@ -4,7 +4,7 @@ class Stores::StoresController < ApplicationController
   before_action :store_not_found
 
   def current_store
-    @current_store ||= Store.find_by(slug: params[:store])
+    @current_store ||= Store.find_by(slug: params[:slug])
   end
 
   def store_not_found

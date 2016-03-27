@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.roles << Role.find_by(name: "registered_user")
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Logged in as #{@user.username}"
@@ -19,10 +20,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @items = Item.all
     @orders = Order.all
+    #TODO link order with store
     @stores = Store.all
-    # TODO link with stores
   end
 
   def edit

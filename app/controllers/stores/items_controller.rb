@@ -22,7 +22,7 @@ class Stores::ItemsController < Stores::StoresController
     end
     if @item.save
       flash[:alert] = "Item successfully created!"
-      redirect_to dashboard_path(current_user)
+      redirect_to dashboard_path(tab: "store_info")
     else
       flash.now[:alert] = "Something went terribly wrong!"
       render :new
@@ -40,11 +40,17 @@ class Stores::ItemsController < Stores::StoresController
     @categories = Category.all
     if @item.update_attributes(item_params)
       flash[:alert] = "Item updated successfully."
-      redirected_to dashboard_path(current_user)
+      redirect_to dashboard_path
     else
       flash.now[:alert] = "Something went wrong."
       render :edit
     end
+  end
+
+  def destroy
+    Item.find(params[:id]).destroy
+    flash[:alert] = "Item has been successfully deleted."
+    redirect_to dashboard_path
   end
 
   private
