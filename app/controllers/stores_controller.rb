@@ -31,7 +31,7 @@ class StoresController < ApplicationController
       if @store.save
         flash[:alert] = "Store successfully updated."
       else
-        flash.now[:alert] = "Something went wrong!"
+        flash.now[:danger] = @store.errors.full_messages.join(", ")
       end
       redirect_to dashboard_path
     else
