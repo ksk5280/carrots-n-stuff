@@ -26,13 +26,23 @@ class StoresController < ApplicationController
 
   def update
     @store = Store.find(params[:id])
-    @store.update_attributes(store_params)
-    if @store.save
-      flash[:success] = "Store successufully updated."
+    if current_user.platform_admin? && params[:status]
+      @store.status = params[:status].to_i
+      if @store.save
+        flash[:alert] = "Store successfully updated."
+      else
+        flash.now[:danger] = @store.errors.full_messages.join(", ")
+      end
       redirect_to dashboard_path
     else
-      flash.now[:danger] = @store.errors.full_messages.join(", ")
-      render :edit
+      @store.update_attributes(store_params)
+      if @store.save
+        flash[:alert] = "Store successfully updated."
+        redirect_to dashboard_path
+      else
+        flash.now[:danger] = @store.errors.full_messages.join(", ")
+        render :edit
+      end
     end
   end
 
