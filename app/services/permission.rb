@@ -1,5 +1,11 @@
 class Permission
+  extend Forwardable
   attr_reader :user
+
+  def_delegators :user,
+    :admin?,
+    :borrower?,
+    :lender?
 
   def initialize(user)
     @user = user || User.new
@@ -21,20 +27,32 @@ class Permission
     end
   end
 
-  def platform_admin_permissions
-    true
-  end
+  private
 
-  def store_admin_permissions
-    true
-  end
+    def controller
+      @controller
+    end
 
-  def registered_user_permissions
-    true
-  end
+    def action
+      @action
+    end
 
-  def guest_user_permissions
-    true
-  end
+    def platform_admin_permissions
+      return true if controller == 'homes' && action.in?(%w(show))
+    end
+
+    def store_admin_permissions
+      return true if controller == 'homes' && action.in?(%w(show))
+    end
+
+    def registered_user_permissions
+      return true if controller == 'homes' && action.in?(%w(show))
+    end
+
+    def guest_user_permissions
+      return true if controller == 'homes' && action.in?(%w(show))
+      return true if controller == 'user' && action.in?(%w(new))
+      true
+    end
 
 end
