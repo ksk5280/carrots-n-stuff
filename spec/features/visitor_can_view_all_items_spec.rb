@@ -12,7 +12,7 @@ RSpec.feature "Visitor can view all items" do
     item = store.items.create(title: "carrots", description: "tasty", price: 999, categories: [category], id: 1001)
 
     visit root_path
-    click_on "All Items"
+    click_on "Items"
     expect(current_path).to eq(items_path)
     expect(page).to have_content "#{item.title}"
     expect(page).to have_content "$9.99"

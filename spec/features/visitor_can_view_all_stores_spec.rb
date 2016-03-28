@@ -11,7 +11,7 @@ RSpec.feature "Visitor visits store page" do
 
   scenario "they see stores that have an approved status" do
     visit root_path
-    click_on "All Stores"
+    click_on "Stores"
     expect(current_path).to eq(stores_path)
     expect(page).to have_content "#{@approved_store.name}"
     expect(page).to_not have_content "#{@pending_store.name}"
