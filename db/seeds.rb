@@ -42,14 +42,13 @@ end
 
 def create_store(user, category)
   store = user.stores.create(name: Faker::Company.name + " Market", status: 2)
-  file = File.open("#{Rails.root}/app/assets/images/danger_beet.jpg")
   while store.items.count < 25
     create_item(store, category, file)
   end
 end
 
 def create_item(store, category, image)
-  item = store.items.create(title: Faker::Commerce.product_name, description: Faker::Lorem.paragraph(3), price: Faker::Commerce.price.to_i * 10**2 , image: image, categories: [category])
+  item = store.items.create(title: Faker::Commerce.product_name, description: Faker::Lorem.paragraph(3), price: Faker::Commerce.price.to_i * 10**2 , categories: [category])
   puts "Created #{item.title}."
 end
 
