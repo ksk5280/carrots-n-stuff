@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show, :edit, :update]
-  before_action :set_user, except: [:create, :new]
+  before_action :set_user, except: [:create, :new, :update]
 
   def create
     @user = User.new(user_params)
@@ -26,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
@@ -47,10 +47,6 @@ class UsersController < ApplicationController
                                  :last_name,
                                  :address,
                                  :email)
-  end
-
-  def require_login
-    render file: "public/404" unless current_user
   end
 
   def set_user
