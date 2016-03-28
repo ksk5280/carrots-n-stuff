@@ -7,19 +7,10 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1"></head>
 <body class = "body-bg">
-
-  <div class="container">
     <%= render partial: "shared/navbar", locals: { cart_count: @cart.item_count } %>
     <%= render partial: "shared/flash_messages" %>
     <%= render partial: "shared/categories_nav" %>
-    <div class="well">
-      <%= yield %>
-
-    </div>
-    <% if secret_session? %>
-      <%= render partial: "shared/easter_egg_bar" %>
-    <% end %>
-  </div>
+    <%= yield %>
 </body>
     <%= render partial: "shared/footer" %>
 </html>

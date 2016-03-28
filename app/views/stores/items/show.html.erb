@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="text-center row">
-    <h1>Presented by <%= current_store.name %></h1>
-    <h1 class="green-font" ><%= @item.title %></h1>
-    <h4 class="green-font" ><%= image_tag @item.image %></h4>
-    <h4 class="green-font" ><%= @item.description %></h4>
+  <div class="text-center row padded-top padded-bottom">
+    <h1 class="green-font" >Presented by <%= current_store.name %></h1>
+    <h2><%= @item.title %></h2>
+    <%= image_tag @item.image %>
+    <h4><%= @item.description %></h4>
     <h4><%= format_price(@item.price) %></h4>
     <%= link_to "Add to cart", "#", class: "btn btn-success btn-font-size" %>
   </div>

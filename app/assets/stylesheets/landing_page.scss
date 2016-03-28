@@ -1,18 +1,10 @@
-$red: #ff0000;
-
-.carousel {
-  border-left: 4px solid $white;
-  border-right: 4px solid $white;
-}
-
-.carousel-inner {
-  height: 400px;
+.jumbotron {
+  background-image:url('colorful-carrots2.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   width: 100%;
-}
-
-.carousel-caption {
-  bottom: 20px;
-  height: 100%;
-  position: absolute;
-  z-index: 20;
+  height:500px;
+  margin-top: -5px;
+  color: white;
 }

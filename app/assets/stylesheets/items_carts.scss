@@ -1,3 +1,6 @@
+$orange: #D1570D;
+$lightyellow: #FDE792;
+
 .item-description {
   background-color: $white;
   border: 3px solid $mediumgreen;
@@ -8,17 +11,17 @@
 }
 
 .item-display {
-  background-color: $smokywhite;
+  // background-color: $lightyellow;
   border: 2px solid $white;
-  border-radius: 10px;
+  // border-radius: 10px;
   margin-bottom: 25px;
   padding: 25px 0;
-  height: 520px;
+  height: 450px;
 }
 
 .item-display img {
   background-color: $white;
-  border-radius: 5px;
+  // border-radius: 5px;
   margin-bottom: 10px;
   width: 80%;
   height: 60%;
@@ -41,7 +44,7 @@
 }
 
 .item-btn {
-  background-color: $mediumgreen;
+  background-color: $orange;
   color: $white;
   margin-bottom: 10px;
   width: 60%;
@@ -54,7 +57,7 @@
 }
 
 .btn-pricing {
-  color: $darkblue;
+  color: $darkred;
   font-family: "Source Sans Pro", "HelveticaNeue"," Helvetica Neue", sans-serif;
   font-size: 22px;
 }
