@@ -33,9 +33,6 @@ Rails.application.routes.draw do
 
   namespace :stores, path: ":slug", as: :store do
     get "", to: "items#index", as: "root"
-    # post "/items", to: "items#create", as: "items"
-
-    # get "/item", to: "items#edit", as: "edit_item"
     resources :items, only: [:show, :new, :destroy, :edit, :create, :update]
   end
 end

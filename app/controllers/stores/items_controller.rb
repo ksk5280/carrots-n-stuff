@@ -1,7 +1,7 @@
 class Stores::ItemsController < Stores::StoresController
 
   def index
-    redirect_to root_path if current_store.pending? || current_store.suspended?
+    redirect_to root_path if current_store && ( current_store.pending? || current_store.suspended? )
     @items = current_store.items
   end
 
