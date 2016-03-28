@@ -3,28 +3,26 @@ require "rails_helper"
 RSpec.feature "visitor logs in" do
   context "enters valid username and password combination" do
     scenario "sees user dashboard page" do
-      user = create(:user)
-      3.times{create(:role)}
-      user.roles << Role.find_by(name: "registered_user")
-      visit "/"
-      first(:link, "Login").click
-      fill_in "Username", with: user.username
-      fill_in "Password", with: "password"
-      click_button "Login"
+      create_roles
+      user = registered_user
+
+      login(user)
 
       expect(current_path).to eq "/dashboard"
-      expect(page).to have_content("Logged in as #{user.username}")
-      expect(page).to have_content("All Orders")
-      expect(page).to have_content("Logout")
-      expect(page).to have_content("My Account")
-      expect(page).to_not have_content("Login")
-      expect(page).to_not have_content("Create Account")
+      expect(page).to have_content "Logged in as #{user.username}"
+      expect(page).to have_content "All Orders"
+      expect(page).to have_content "Logout"
+      expect(page).to have_content "My Account"
+      expect(page).to_not have_content "Login"
+      expect(page).to_not have_content "Create Account"
     end
   end
 
   context "does not enter valid username and password combination" do
     scenario "gets error and sees login page again" do
-      user = create(:user)
+      create_roles
+      user = registered_user
+
       visit "/"
       first(:link, "Login").click
       fill_in "Username", with: user.username

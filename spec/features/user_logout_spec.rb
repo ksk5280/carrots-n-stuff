@@ -2,14 +2,10 @@ require "rails_helper"
 
 RSpec.feature "User logs out of account" do
   scenario "user turns visitor and sees logout link change" do
-    User.create(username: "brennan", password: "password")
+    create_roles
+    user = registered_user
 
-    visit "/"
-    first(:link, "Login").click
-
-    fill_in "Username", with: "brennan"
-    fill_in "Password", with: "password"
-    click_on "Login to your account"
+    login(user)
 
     expect(page).to have_content("Logout")
     expect(page).to_not have_content("Login")
