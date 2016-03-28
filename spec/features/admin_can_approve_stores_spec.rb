@@ -52,7 +52,7 @@ RSpec.feature "platform admin can approve a pending store" do
     expect(page).to have_content "Approved"
     click_on "Suspend"
     expect(page).to have_content "Suspended"
-    
+
     visit "/farmer-s-market"
     expect(current_path).to_not eq("/farmer-s-market")
   end
