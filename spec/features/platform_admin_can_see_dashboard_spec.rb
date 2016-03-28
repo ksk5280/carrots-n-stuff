@@ -2,15 +2,12 @@ require "rails_helper"
 
 RSpec.feature "platfom admin can see platform admin dashboard" do
   scenario "can see dashboard" do
-    user = User.create(username: "bacon", password: "password")
-    3.times{create(:role)}
-    user.roles << Role.find_by(name: "platform_admin")
-    store = Store.create(name: "Farmer's Market", status: 2)
+    create_roles
+    user = platform_admin
 
-    visit "/login"
-    fill_in "Username", with: "bacon"
-    fill_in "Password", with: "password"
-    click_on "Login to your account"
+    store = approved_store(user)
+
+    login(user)
 
     expect(current_path).to eq("/dashboard")
 
