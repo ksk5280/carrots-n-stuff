@@ -14,9 +14,13 @@ RSpec.feature "Store admin can delete items" do
     login(user)
 
     click_on "Store Admin Information"
-    expect(page).to have_content "Carrots"
+    within "#item-table" do
+      expect(page).to have_content "Carrots"
+    end
     click_on "Delete Item"
     expect(page).to have_content "Item has been successfully deleted."
-    expect(page).not_to have_content "Carrots"
+    within "#item-table" do
+      expect(page).not_to have_content "Carrots"
+    end
   end
 end

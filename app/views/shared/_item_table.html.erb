@@ -4,7 +4,7 @@
   <%= link_to "Delete store", store_path(store.slug), class: "btn btn-success btn-font-size", method: :delete, data: {confirm: "Are you sure you want to do this???"} %>
   <%= link_to "Create item", new_store_item_path(current_user.stores.first.slug), class: "btn btn-success btn-font-size" if current_user.stores.first && current_store.approved?%>
 <% end %>
-<table class="table">
+<table class="table" id="item-table">
   <tr>
     <th>Name</th>
     <th>Price</th>
