@@ -16,7 +16,7 @@ RSpec.feature "user can create a store" do
       click_on "Store Admin Information"
 
       expect(page).to have_content "#{user.first_name}'s Market"
-      expect(page).to have_content "Status: pending"
+      expect(page).to have_content "Status: Pending"
     end
   end
 end

@@ -12,6 +12,7 @@ RSpec.feature "visitor can create account" do
       fill_in "First name", with: "Brennan"
       fill_in "Last name", with: "Holtzclaw"
       fill_in "Address", with: "1510 Blake Street, Basement"
+      fill_in "Email", with: "b@gmail.com"
       click_button "Create Account"
 
       expect(current_path).to eq "/dashboard"

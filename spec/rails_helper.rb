@@ -105,7 +105,7 @@ def create_store(user)
   click_on "Create new store"
   fill_in "Name", with: "#{user.first_name}'s Market"
   fill_in "Description", with: "#{user.first_name} says this place is great!"
-  click_button "Create store"
+  click_button "Submit"
 end
 
 def create_item

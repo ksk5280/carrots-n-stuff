@@ -25,9 +25,9 @@
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="store_info">
-      <h1>Store information</h1>
-      <%= "Status: #{current_user.stores.first.status}" if current_user.stores.first %>
-      <%= link_to "Create item", new_store_item_path(current_user.stores.first.slug) if current_user.stores.first %>
+      <h1>Store information<%=" - #{current_user.stores.first.name}" if current_user.stores.first%></h1>
+
+      <h3><%= "Status: #{current_user.stores.first.status.capitalize}" if current_user.stores.first %></h3>
       <%= render partial: "shared/item_table", locals: {items: current_user.stores.first.items} if current_user.stores.first %>
         <div class="text-center row">
           <div class="padded-top padded-bottom">
