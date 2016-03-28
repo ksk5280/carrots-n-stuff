@@ -34,6 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = "Account successfully updated."
       redirect_to dashboard_path
     else
+      flash[:danger] = @user.errors.full_messages.join(", ")
       render :edit
     end
   end
