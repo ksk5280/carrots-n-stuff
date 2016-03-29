@@ -11,10 +11,10 @@ RSpec.feature "Visitor visits categories page" do
     visit root_path
     click_on "Categories"
     expect(current_path).to eq(categories_path)
-    expect(page).to have_content("Fruits")
+    expect(page).to have_content "Fruits"
 
     click_on "Fruits"
-    expect(current_path).to eq("/categories/Fruits")
+    expect(current_path).to eq "/categories/fruits"
     expect(page).to have_content "Fruits"
     expect(page).to have_content "#{item.title}"
     expect(page).to have_content "$8.00"

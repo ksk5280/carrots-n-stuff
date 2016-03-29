@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @orders = Order.all
     #TODO link order with store
     @stores = Store.all
+    @categories = Category.all
   end
 
   def edit

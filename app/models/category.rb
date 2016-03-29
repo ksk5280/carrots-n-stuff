@@ -4,7 +4,13 @@ class Category < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :image, presence: true
 
+  before_validation :generate_slug
+
   def non_retired_items
     items.where(retired: false)
+  end
+
+  def generate_slug
+    self.slug = title.parameterize if title
   end
 end
