@@ -1,0 +1,6 @@
+<%= link_to "Create New Category", new_category_path, class: "btn btn-success btn-font-size" %>
+<% @categories.each do |category| %>
+  <%= category.title %>
+  <%= link_to "Update Category", edit_category_path(category.slug), class: "btn btn-success btn-font-size" %>
+  <%= link_to "Delete Category", delete_category_path(category.slug), class: "btn btn-success btn-font-size", method: :delete %>
+<% end %>

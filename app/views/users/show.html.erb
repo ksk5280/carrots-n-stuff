@@ -45,6 +45,7 @@
 
     <div role="tabpanel" class="tab-pane" id="platform_info">
       <h1>Platform information</h1>
+        <%= render partial: "shared/categories" %>
         <%= render partial: "shared/store_table", locals: {stores: @stores} %>
     </div>
   </div>

@@ -1,0 +1,7 @@
+<h1>Edit Category</h1>
+
+<%= form_for @category, url: update_category_path, method: :put do |f| %>
+  <h4><%= f.label :title %></h4>
+  <h4><%= f.text_field :title, value: @category.title %></h4>
+  <p><%= f.submit "Update Category", class: "btn btn-success btn-font-size" %></p>
+<% end %>

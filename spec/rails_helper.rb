@@ -73,6 +73,12 @@ def create_categories
   end
 end
 
+def create_category
+  click_on "Create New Category"
+  fill_in "Title", with: "That New New"
+  click_on "Create Category"
+end
+
 def item(store)
   store.items.create(title: "Celery",
               description: "Green, crunchy, delicious!",
