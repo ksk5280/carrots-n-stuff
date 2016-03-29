@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
       if current_user.email
         UserNotifier.send_confirmation(current_user).deliver_now
         flash[:success] += " An email has been sent to: #{current_user.email}"
+        flash[:success] += " Our drone will deliver your produce soon!"
       end
       redirect_to order_path(@order.id)
     else
