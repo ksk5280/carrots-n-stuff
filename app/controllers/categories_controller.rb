@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
       flash[:success] = "Category created succesfully."
       redirect_to dashboard_path
     else
-      flash.now[:danger] = "Title can not be blank."
+      flash.now[:danger] = @category.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
       flash[:success] = "Category updated successfully."
       redirect_to dashboard_path
     else
-      flash.now[:danger] = "Title can not be blank."
+      flash.now[:danger] = @category.errors.full_messages.join(", ")
       render :edit
     end
   end
