@@ -34,7 +34,6 @@ class UsersController < ApplicationController
       user = User.find(params[:user_id].to_i)
       user.update_attribute("status", params[:status].to_i)
       user.roles << Role.find_by(name: "store_manager")
-      binding.pry
       flash[:success] = "#{user.first_name} #{user.last_name} is now a #{user.store.name} team member."
       redirect_to dashboard_path
     elsif params[:status]

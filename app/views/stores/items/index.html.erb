@@ -4,7 +4,7 @@
     <h4 class="green-font" ><%= current_store.description %></h4>
     <%= image_tag current_store.image_url, alt: current_store.name %>
 
-    <%= render partial: "shared/user_applicant" if current_user %>
+    <%= render partial: "shared/user_applicant" if current_user && !current_user.store %>
 
   </div>
   <div class="text-center row">
