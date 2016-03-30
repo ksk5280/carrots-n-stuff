@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  before_action :require_admin, only: [:update]
   def index
     if current_user
       @orders = current_user.orders
@@ -10,17 +9,18 @@ class OrdersController < ApplicationController
 
   def create
     @order = OrderGenerator.generate(@cart, current_user)
-    if @order.save
+    if @order.save && !@cart.contents.empty?
       session[:cart] = {}
       flash[:success] = "Order was successfully placed!"
       if current_user.email
         UserNotifier.send_confirmation(current_user).deliver_now
         flash[:success] += " An email has been sent to: #{current_user.email}"
+        flash[:success] += " Our drone will deliver your produce soon!"
       end
       redirect_to order_path(@order.id)
     else
-      flash.now[:danger] = "Checkout Error"
-      render "/cart_items/index"
+      flash[:danger] = "You can't check out with an empty cart."
+      redirect_to "/cart"
     end
   end
 

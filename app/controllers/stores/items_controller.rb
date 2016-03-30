@@ -48,7 +48,7 @@ class Stores::ItemsController < Stores::StoresController
 
   def destroy
     Item.find(params[:id]).destroy
-    flash[:alert] = "Item has been successfully deleted."
+    flash[:success] = "Item has been successfully deleted."
     redirect_to dashboard_path
   end
 

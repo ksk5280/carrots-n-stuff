@@ -14,7 +14,7 @@ class CartItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
 
-    message = "Successfully removed <a href=\"#{item_path(@item.id)}\""\
+    message = "Successfully removed <a href=\"#{store_item_path(@item.store.slug, @item.id)}\""\
     "class=\"alert-link\">#{@item.title}</a> from your cart."
 
     @cart.remove_item(@item.id)

@@ -41,4 +41,28 @@ RSpec.feature "User creates order" do
       expect(page).to have_content "##{order.id}"
     end
   end
+
+  context "they try to checkout without any items in cart" do
+    scenario "they see error message" do
+      create_roles
+      create_categories
+      store = approved_store(store_admin)
+      item = item3(store)
+      login(registered_user)
+
+      visit root_path
+
+      within ".navbar-right" do
+        expect(page).to have_content "(0)"
+        click_on "Cart"
+      end
+
+      expect(current_path).to eq(cart_path)
+
+      click_on "Checkout"
+
+      expect(current_path).to eq(cart_path)
+      expect(page).to have_content "You can't check out with an empty cart."
+    end
+  end
 end

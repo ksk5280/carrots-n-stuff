@@ -5,7 +5,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-
+include ApplicationHelper
 
 def create_roles
   %w(registered_user store_admin platform_admin).each do |role|
@@ -36,6 +36,18 @@ def store_admin
   store_admin
 end
 
+def store_admin2
+  store_admin = User.create(username: "store2",
+                                 password: "password",
+                                 first_name: "store",
+                                 last_name: "admin",
+                                 email: "store@store.co",
+                                 address: "Denver CO")
+  store_admin.roles << Role.find_by(name: "registered_user")
+  store_admin.roles << Role.find_by(name: "store_admin")
+  store_admin
+end
+
 def platform_admin
   platform_admin = User.create(username: "admin",
                               password: "password",
@@ -57,6 +69,12 @@ end
 
 def approved_store(user)
   user.stores.create(name: "Approved",
+               description: "We just got approved ya'll",
+               status: 2)
+end
+
+def approved_store2(user)
+  user.stores.create(name: "Newly Approved",
                description: "We just got approved ya'll",
                status: 2)
 end
