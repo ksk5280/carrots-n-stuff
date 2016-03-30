@@ -26,9 +26,9 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="store_info">
       <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
-      <%# binding.pry %>
+
       <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
-      
+
       <h3><%= "Applicants:" %></h3>
       <%= render partial: "shared/pending_employees" if current_user.store %>
       <h3><%= "Employees:" %></h3>
