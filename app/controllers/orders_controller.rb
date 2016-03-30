@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  before_action :require_admin, only: [:update]
   def index
     if current_user
       @orders = current_user.orders

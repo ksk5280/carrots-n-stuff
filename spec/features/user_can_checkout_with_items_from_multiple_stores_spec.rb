@@ -45,11 +45,16 @@ RSpec.feature "User can checkout with items from multiple stores" do
       click_on "Cart"
     end
 
+    expect(page).to have_link item_1.title
     expect(current_path).to eq cart_path
 
     click_on "Checkout"
 
+    order = Order.last
+
+    expect(current_path).to eq order_path(order.id)
     expect(page).to have_content "Order was successfully placed! An email has been sent to: #{user.email}"
     expect(page).to have_content "Our drone will deliver your produce soon!"
+    expect(page).to have_content format_price(order.total)
   end
 end

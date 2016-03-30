@@ -4,6 +4,7 @@
     <div class="item-description text-center">
       <div class="btn-font-size green-font">
         <h4><%= link_to "#{item.title}", store_item_path(item.store.slug, item.id), class: "green-font" %></h4>
+        <p><%= link_to "#{item.store.name}", store_root_path(item.store.slug) %></p>
       </div>
       <div class="btn-pricing"><%= format_price(item.price) %></div>
       <%= button_to "Add to Cart", cart_items_path(item_id: item.id),

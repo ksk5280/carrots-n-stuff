@@ -33,7 +33,7 @@ class StoresController < ApplicationController
     if current_user.platform_admin? && params[:status]
       @store.status = params[:status].to_i
       if @store.save
-        flash[:alert] = "Store successfully updated."
+        flash[:success] = "Store successfully updated."
       else
         flash.now[:danger] = @store.errors.full_messages.join(", ")
       end
@@ -41,7 +41,7 @@ class StoresController < ApplicationController
     else
       @store.update_attributes(store_params)
       if @store.save
-        flash[:alert] = "Store successfully updated."
+        flash[:success] = "Store successfully updated."
         redirect_to dashboard_path
       else
         flash.now[:danger] = @store.errors.full_messages.join(", ")
