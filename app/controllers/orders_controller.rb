@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = OrderGenerator.generate(@cart, current_user)
-    if @order.save
+    if @order.save && !@cart.contents.empty?
       session[:cart] = {}
       flash[:success] = "Order was successfully placed!"
       if current_user.email
@@ -19,8 +19,8 @@ class OrdersController < ApplicationController
       end
       redirect_to order_path(@order.id)
     else
-      flash.now[:danger] = "Checkout Error"
-      render "/cart_items/index"
+      flash[:danger] = "You can't check out with an empty cart."
+      redirect_to "/cart"
     end
   end
 
