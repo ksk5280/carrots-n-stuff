@@ -12,7 +12,7 @@ RSpec.feature "Store admin can delete store" do
     expect(current_path).to eq "/dashboard"
     click_on "Store Admin Information"
     expect(page).to have_content store.name
-
+    
     click_on "Delete store"
     expect(current_path).to eq("/dashboard")
     expect(page).to have_content "Store has been successfully deleted."

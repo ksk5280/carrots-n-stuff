@@ -9,7 +9,7 @@ RSpec.feature "Store admin can update items" do
 
     create_categories
 
-    item2(store)
+    item = item2(store)
 
     login(user)
 

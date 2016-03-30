@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   def set_top_categories
     @top_categories ||= Category.take(4)
   end
-  
+
   def format_price(price)
     number_to_currency(price.to_f / 100)
   end

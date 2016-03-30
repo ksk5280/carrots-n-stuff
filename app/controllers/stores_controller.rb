@@ -13,8 +13,9 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = current_user.stores.new(store_params)
+    @store = Store.new(store_params)
     if @store.save
+      current_user.update_attributes(store_id: @store.id)
       current_user.roles << Role.find_by(name: "store_admin")
       flash[:success] = "Store successfully requested."
       redirect_to dashboard_path
@@ -51,7 +52,8 @@ class StoresController < ApplicationController
   end
 
   def destroy
-    current_user.stores.first.destroy
+    store = Store.find_by(slug: params[:id])
+    store.destroy
     UserRole.where(user_id: current_user.id).find_by(role_id: Role.find_by(name: "store_admin").id).destroy
     flash[:success] = "Store has been successfully deleted."
     redirect_to dashboard_path
