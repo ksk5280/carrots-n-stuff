@@ -142,7 +142,9 @@ def create_store(user)
 end
 
 def create_item(title = "Carrots")
-  click_on "Create item"
+  within "#store-info" do
+    click_on "Create item"
+  end
   fill_in "Title", with: title
   fill_in "Description", with: "Yum yum!"
   fill_in "Price", with: 1000

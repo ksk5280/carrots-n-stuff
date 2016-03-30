@@ -1,5 +1,5 @@
-  <%= link_to "Update store", edit_store_path(current_user.store.slug), class: "btn btn-success btn-font-size" %>
-  <%= link_to "Delete store", store_path(current_user.store.slug), class: "btn btn-success btn-font-size", method: :delete, data: {confirm: "Are you sure you want to do this???"} %>
+  <%= link_to "Update store", edit_store_path(current_user.store.slug), class: "btn btn-success btn-font-size"  if current_user.store_admin? %>
+  <%= link_to "Delete store", store_path(current_user.store.slug), class: "btn btn-success btn-font-size", method: :delete, data: {confirm: "Are you sure you want to do this???"} if current_user.store_admin? %>
   <%= link_to "Create item", new_store_item_path(current_user.store.slug), class: "btn btn-success btn-font-size" if current_user.store %>
   <br>
   <br>
