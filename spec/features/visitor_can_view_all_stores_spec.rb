@@ -24,6 +24,7 @@ RSpec.feature "Visitor visits store page" do
       click_on "#{@approved_store.name}"
       expect(current_path).to eq(store_root_path(@item.store.slug))
       expect(page).to have_content "Welcome to #{@approved_store.name}!"
+      expect(page).not_to have_button "Apply for Manager position"
       expect(page).to have_content "#{@approved_store.description}"
       expect(page).to have_content "#{@item.title}"
       expect(page).to have_content "$10.00"

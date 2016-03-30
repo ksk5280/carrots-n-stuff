@@ -14,7 +14,9 @@ RSpec.feature "Store admin can update store" do
     click_on "Store Admin Information"
 
     expect(page).to have_content store.name
-    click_on "Update store"
+    within "#store-info" do
+      click_on "Update store"
+    end
     fill_in "Name", with: "Modern Farmers"
     click_button "Submit"
     expect(current_path).to eq "/dashboard"

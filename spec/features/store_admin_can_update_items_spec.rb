@@ -9,12 +9,14 @@ RSpec.feature "Store admin can update items" do
 
     create_categories
 
-    item2(store)
+    item = item2(store)
 
     login(user)
 
     click_on "Store Admin Information"
-    click_on "Update Item"
+    within "#store-info" do
+      click_on "Update Item"
+    end
     fill_in "Title", with: "broccoli"
     fill_in "Description", with: "So green"
     fill_in "Price", with: 1000
