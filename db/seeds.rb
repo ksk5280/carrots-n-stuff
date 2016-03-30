@@ -41,7 +41,8 @@ def create_platform_admin
 end
 
 def create_store(user, category)
-  store = user.stores.create(name: Faker::Company.name + " Market", status: 2)
+  store = Store.create(name: Faker::Company.name + " Market", status: 2)
+  user.update_attribute("store_id", store.id)
   while store.items.count < 25
     create_item(store, category, file)
   end

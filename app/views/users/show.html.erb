@@ -26,7 +26,7 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="store_info">
       <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
-<!-- <%# binding.pry %> -->
+      <%# binding.pry %>
       <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
       <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
         <div class="text-center row">

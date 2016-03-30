@@ -15,7 +15,7 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     if @store.save
-      current_user.update_attributes(store_id: @store.id)
+      current_user.update_attribute("store_id", @store.id)
       current_user.roles << Role.find_by(name: "store_admin")
       flash[:success] = "Store successfully requested."
       redirect_to dashboard_path
