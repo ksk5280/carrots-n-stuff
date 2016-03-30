@@ -1,5 +1,5 @@
 def create_roles
-  %w(registered_user store_admin platform_admin).each do |role|
+  %w(registered_user store_admin platform_admin store_manager).each do |role|
     role = Role.create(name: role)
     puts "Created #{role.name}"
   end
@@ -15,16 +15,16 @@ end
 def create_registered_users
   while User.joins(:roles).where("roles.name" => "registered_user").count < 99
     user = User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, password: "password", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, address: address, roles: [Role.find(1)])
-    puts "Created #{user.username}"
+    puts "Created registered_user #{user.username}"
   end
-  usr = User.create(username: "josh_mejia", password: "password", email: "josh@turing.io", first_name: "josh", last_name: "mejia", address: address, roles: [Role.find(1)])
-  puts "Created #{user.username}"
+  user = User.create(username: "josh_mejia", password: "password", email: "josh@turing.io", first_name: "josh", last_name: "mejia", address: address, roles: [Role.find(1)])
+  puts "Created registered_user #{user.username}"
 end
 
 def create_store_admin
   while User.joins(:roles).where("roles.name" => "store_admin").count < 19
-    user = User.create(username: Faker::Internet.user_name, password: "password", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, address: address, roles: [Role.find(1), Role.find(2)])
-    puts "Created #{user.username}"
+    user = User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, password: "password", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, address: address, roles: [Role.find(1), Role.find(2)])
+    puts "Created store_admin #{user.username}"
   end
   User.create(username: "andrew_carmer", password: "password", email: "andrew@turing.io", first_name: "andrew", last_name: "carmer", address: address, roles: [Role.find(1), Role.find(2)])
   puts "Created #{user.username}"

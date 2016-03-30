@@ -11,6 +11,7 @@ RSpec.feature "Pending store owner can create items" do
     visit "/dashboard"
 
     create_item("New Strange Item")
+
     expect(current_path).to eq("/dashboard")
 
     expect(page).to have_content "New Strange Item"
