@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :line_items
   has_many :items, through: :line_items
+  enum drone: %w(unrequested pending rejected completed)
 
   validates :status,
             presence: true,
