@@ -12,4 +12,8 @@ class Store < ActiveRecord::Base
   def generate_slug
     self.slug = name.parameterize if name
   end
+
+  def self.all_active
+    where(status: 2)
+  end
 end

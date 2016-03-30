@@ -13,7 +13,7 @@ RSpec.feature "store admin can create item" do
 
     click_on "Store Admin Information"
 
-    create_item
+    create_item("Carrots")
 
     expect(page).to have_content "Carrots"
     expect(page).to have_content "$10.00"
