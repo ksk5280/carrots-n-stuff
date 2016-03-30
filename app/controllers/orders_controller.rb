@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if params[:drone]
       @order.update(drone: params[:drone].to_i)
-      flash[:success] = "Order ##{@order.id} has been requested for delivery."
+      flash[:success] = "Order ##{@order.id} is #{@order.drone}."
       redirect_to order_path(@order.id)
     else
       @order.update(status: params[:status])
