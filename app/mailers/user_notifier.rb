@@ -12,6 +12,6 @@ class UserNotifier < ApplicationMailer
   end
 
   def thank_you(user)
-    " Thank you, #{user.fullname}, for purchasing lucky charms!"
+    " Thank you for your order, #{user.fullname}. We hope you enjoy your fresh produce!"
   end
 end
