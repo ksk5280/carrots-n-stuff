@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true
 
+  enum status: %w(Pending Hired Fired)
+
   def fullname
     "#{first_name} #{last_name}"
   end

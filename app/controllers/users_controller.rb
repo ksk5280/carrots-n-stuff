@@ -30,13 +30,27 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    if @user.save
-      flash[:success] = "Account successfully updated."
+    if current_user.store_admin? && params[:status]
+      user = User.find(params[:user_id])
+      user.update_attribute("status", params[:status].to_i)
+      user.roles << Role.find_by(name: "store_manager")
+      flash[:success] = "#{user.first_name} #{user.last_name} is now a #{user.store.name} team member."
       redirect_to dashboard_path
+    elsif params[:status]
+      current_user.update_attribute("status", params[:status].to_i)
+      current_user.update_attribute("store_id", params[:store_id])
+      flash[:success] = "Your application has been submitted."
+      store = Store.find(params[:store_id])
+      redirect_to store_root_path(store.slug)
     else
-      flash[:danger] = @user.errors.full_messages.join(", ")
-      render :edit
+      @user.update(user_params)
+      if @user.save
+        flash[:success] = "Account successfully updated."
+        redirect_to dashboard_path
+      else
+        flash[:danger] = @user.errors.full_messages.join(", ")
+        render :edit
+      end
     end
   end
 
@@ -48,7 +62,9 @@ class UsersController < ApplicationController
                                  :first_name,
                                  :last_name,
                                  :address,
-                                 :email)
+                                 :email,
+                                 :status,
+                                 :store_id)
   end
 
   def set_user

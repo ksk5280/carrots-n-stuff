@@ -8,9 +8,19 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :format_price
   helper_method :user_orders_path
+  helper_method :current_employees
+  helper_method :pending_employees
 
   def current_user
     @user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def pending_employees
+    current_user.store.users.where(status: "Pending")
+  end
+
+  def current_employees
+    current_user.store.users.joins(:roles).where("roles.name" => "store_manager")
   end
 
   def authorize!

@@ -8,7 +8,7 @@ require 'rspec/rails'
 include ApplicationHelper
 
 def create_roles
-  %w(registered_user store_admin platform_admin).each do |role|
+  %w(registered_user store_admin platform_admin store_manager).each do |role|
     Role.create(name: role)
   end
 end

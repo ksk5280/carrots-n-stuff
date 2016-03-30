@@ -1,0 +1,7 @@
+<% current_employees.each do |employee| %>
+  <%= "#{employee.first_name} #{employee.last_name}: #{employee.status}" %>
+  <%= form_for(employee, method: :patch) do |f| %>
+    <input type="hidden" name="status" value="2">
+    <%= f.submit "Fire employee" %>
+  <% end %>
+<% end %>

@@ -9,18 +9,22 @@ RSpec.feature "store admin can create new store managers" do
 
     login(reg_user)
 
+    visit "/#{store.slug}"
+
+    click_on "Apply for Manager position"
+    expect(page).to have_content "Your application has been submitted."
+
+    click_on "Logout"
+
+    login(user)
+
     click_on "Store Admin Information"
 
-    click_on "Create New Manager"
-    fill_in "Username", with: "brutal_kimi"
-    fill_in "Password", with: "password"
-    fill_in "First name", with: "Kimi"
-    fill_in "Last name", with: "Killa"
-    fill_in "Address", with:  "Planet Earth"
-    fill_in "Email", with: "brutal_kimi@hotmail.com"
-    click_on "Create Manager"
+    expect(page).to have_content "#{reg_user.first_name} #{reg_user.last_name}: Pending"
 
-    expect(current_path).to eq dashboard_path
-    expect(page).to have_content "Kimi Killa"
+    click_on "Hire applicant"
+
+    expect(page).to have_content "#{reg_user.first_name} #{reg_user.last_name} is now a #{store.name} team member."
+    expect(page).to have_content "#{reg_user.first_name} #{reg_user.last_name}: Hired"
   end
 end
