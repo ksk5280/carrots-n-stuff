@@ -27,9 +27,8 @@ RSpec.feature "store admin can approve drone strike" do
     click_on "Confirm"
     visit "/dashboard"
     click_on "Store Admin Information"
-
-      expect(page).to have_content "Completed"
-      expect(page).to_not have_content "Decline"
-      expect(page).to_not have_content "Confirm"
+    expect(page).to have_content "Completed"
+    expect(page).to_not have_content "Decline"
+    expect(page).to_not have_content "Confirm"
   end
 end

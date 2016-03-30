@@ -24,6 +24,7 @@ RSpec.feature "User creates order" do
     click_on "Checkout"
     expect(page).to_not have_content "Delivery Status: Unrequested"
     click_on "Request Delivery"
+    expect(page).to_not have_button "Request Delivery"
     expect(page).to have_content "Delivery Status: Pending"
   end
 end
