@@ -26,56 +26,62 @@
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="store-info">
-      <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
+      <% if current_user.store_admin? %>
+        <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
 
-      <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
 
-      <h3><%= "Applicants:" %></h3>
-      <%= render partial: "shared/pending_employees" if current_user.store %>
-      <h3><%= "Employees:" %></h3>
-      <%= render partial: "shared/current_employees" if current_user.store %>
+        <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
 
-      <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
-      
-      <div class="text-center row">
-        <div class="padded-top padded-bottom">
-          <h2 class="green-font">All Orders</h1>
+        <h3><%= "Applicants:" %></h3>
+        <%= render partial: "shared/pending_employees" if current_user.store %>
+        <h3><%= "Employees:" %></h3>
+        <%= render partial: "shared/current_employees" if current_user.store %>
+
+        <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
+
+        <div class="text-center row">
+          <div class="padded-top padded-bottom">
+            <h2 class="green-font">All Orders</h1>
+          </div>
         </div>
-      </div>
-      <div class="orders row">
-        <table class="table table-condensed table-hover orders-table">
-          <%= render partial: "admin/orders/status_counts" %>
-          <%= render partial: "admin/orders/table_headers" %>
-          <%= render partial: "admin/orders/order", collection: @orders %>
-        </table>
-      </div>
+        <div class="orders row">
+          <table class="table table-condensed table-hover orders-table">
+            <%= render partial: "admin/orders/status_counts" %>
+            <%= render partial: "admin/orders/table_headers" %>
+            <%= render partial: "admin/orders/order", collection: @orders %>
+          </table>
+        </div>
+      <% end %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="store_manager_info">
-      <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
+      <% if current_user.store_manager? %>
+        <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
 
-      <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
+        <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
 
-      <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
-      <div class="text-center row">
-        <div class="padded-top padded-bottom">
-          <h2 class="green-font">All Orders</h1>
+        <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
+        <div class="text-center row">
+          <div class="padded-top padded-bottom">
+            <h2 class="green-font">All Orders</h1>
+          </div>
         </div>
-      </div>
-      <div class="orders row">
-        <table class="table table-condensed table-hover orders-table">
-          <%= render partial: "admin/orders/status_counts" %>
-          <%= render partial: "admin/orders/table_headers" %>
-          <%= render partial: "admin/orders/order", collection: @orders %>
-        </table>
-      </div>
+        <div class="orders row">
+          <table class="table table-condensed table-hover orders-table">
+            <%= render partial: "admin/orders/status_counts" %>
+            <%= render partial: "admin/orders/table_headers" %>
+            <%= render partial: "admin/orders/order", collection: @orders %>
+          </table>
+        </div>
+      <% end %>
     </div>
 
-
     <div role="tabpanel" class="tab-pane" id="platform_info">
-      <h1>Platform information</h1>
+      <% if current_user.platform_admin? %>
+        <h1>Platform information</h1>
         <%= render partial: "shared/categories" %>
         <%= render partial: "shared/store_table", locals: {stores: @stores} %>
+      <% end %>
     </div>
   </div>
 

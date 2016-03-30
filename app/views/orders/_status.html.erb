@@ -1,3 +1,4 @@
 <h4>Status: <%= @order.status %></h4>
+<h4> <%="Delivery Status: #{@order.drone.capitalize}" if !@order.unrequested? %></h4>
 <h4>Submitted on: <%= @order.formatted_creation_date %> at <%= @order.formatted_creation_time %></h4>
 <h4>Date Updated: <%= @order.formatted_update_date %> at <%= @order.formatted_update_time %></h4>

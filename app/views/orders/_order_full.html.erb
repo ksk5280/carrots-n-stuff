@@ -13,3 +13,4 @@
   <%= render partial: "orders/line_item", collection: @order.line_items %>
 </div>
 <%= render partial: "orders/total" %>
+<%= render partial: "shared/drone_button" if @order.unrequested? %>
