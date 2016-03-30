@@ -5,6 +5,6 @@
     <h4 class="green-font" ><%= image_tag @item.image %></h4>
     <h4 class="green-font" ><%= @item.description %></h4>
     <h4><%= format_price(@item.price) %></h4>
-    <%= link_to "Add to cart", "#", class: "btn btn-success btn-font-size" %>
+    <%= button_to "Add to Cart", cart_items_path(item_id: @item.id), class: "btn btn-success btn-font-size" %>
   </div>
 </div>
