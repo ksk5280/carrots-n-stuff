@@ -141,9 +141,9 @@ def create_store(user)
   click_button "Submit"
 end
 
-def create_item
+def create_item(title = "Carrots")
   click_on "Create item"
-  fill_in "Title", with: "Carrots"
+  fill_in "Title", with: title
   fill_in "Description", with: "Yum yum!"
   fill_in "Price", with: 1000
   check "Fruits"

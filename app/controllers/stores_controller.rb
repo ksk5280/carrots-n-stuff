@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
 
   def index
-    @stores = Store.where(status: 2)
+    @stores = Store.all_active
   end
 
   def show

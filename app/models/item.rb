@@ -18,6 +18,10 @@ class Item < ActiveRecord::Base
     url: "/:filename"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
+  def self.all_for_active_stores
+    joins(:store).merge(Store.all_active)
+  end
+
   def self.find_gold
     find_by(title: "Pot O' Gold").id
   end
