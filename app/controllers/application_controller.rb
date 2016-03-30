@@ -6,11 +6,20 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cart, :set_top_categories, :authorize!
   helper_method :current_user
-  helper_method :format_price
   helper_method :user_orders_path
+  helper_method :current_employees
+  helper_method :pending_employees
 
   def current_user
     @user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def pending_employees
+    current_user.store.users.where(status: "Pending")
+  end
+
+  def current_employees
+    current_user.store.users.joins(:roles).where("roles.name" => "store_manager")
   end
 
   def authorize!
@@ -26,10 +35,6 @@ class ApplicationController < ActionController::Base
 
   def set_top_categories
     @top_categories ||= Category.take(4)
-  end
-  
-  def format_price(price)
-    number_to_currency(price.to_f / 100)
   end
 
   private

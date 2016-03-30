@@ -14,8 +14,4 @@ module ApplicationHelper
   def format_price(price)
     number_to_currency(price.to_f / 100)
   end
-
-  def secret_session?
-    !!session[:serious]
-  end
 end

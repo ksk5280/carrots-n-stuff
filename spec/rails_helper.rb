@@ -8,7 +8,7 @@ require 'rspec/rails'
 include ApplicationHelper
 
 def create_roles
-  %w(registered_user store_admin platform_admin).each do |role|
+  %w(registered_user store_admin platform_admin store_manager).each do |role|
     Role.create(name: role)
   end
 end
@@ -62,27 +62,35 @@ def platform_admin
 end
 
 def pending_store(user)
-  user.stores.create(name: "Mod Market",
-               description: "Modern times calls for modern Markets..",
-               status: 0)
+  store = Store.create(name: "Mod Market",
+                       description: "Modern times calls for modern Markets..",
+                       status: 0)
+  user.update_attributes(store_id: store.id)
+  store
 end
 
 def approved_store(user)
-  user.stores.create(name: "Approved",
-               description: "We just got approved ya'll",
-               status: 2)
+  store = Store.create(name: "Approved",
+                       description: "We just got approved ya'll",
+                       status: 2)
+  user.update_attributes(store_id: store.id)
+  store
 end
 
 def approved_store2(user)
-  user.stores.create(name: "Newly Approved",
-               description: "We just got approved ya'll",
-               status: 2)
+  store = Store.create(name: "Newly Approved",
+                       description: "We just got approved ya'll",
+                       status: 2)
+  user.update_attributes(store_id: store.id)
+  store
 end
 
 def suspended_store(user)
-  user.stores.create(name: "Suspended",
-               description: "We were bad and now we're suspended..",
-               status: 1)
+  store = Store.create(name: "Suspended",
+                       description: "We were bad and now we're suspended..",
+                       status: 1)
+  user.update_attributes(store_id: store.id)
+  store
 end
 
 def create_categories
@@ -105,6 +113,7 @@ def item(store)
 end
 
 def item2(store)
+
   store.items.create(title: "Carrots",
               description: "Orange, crunchy",
               price: 500,
@@ -132,9 +141,11 @@ def create_store(user)
   click_button "Submit"
 end
 
-def create_item
-  click_on "Create item"
-  fill_in "Title", with: "Carrots"
+def create_item(title = "Carrots")
+  within "#store-info" do
+    click_on "Create item"
+  end
+  fill_in "Title", with: title
   fill_in "Description", with: "Yum yum!"
   fill_in "Price", with: 1000
   check "Fruits"
