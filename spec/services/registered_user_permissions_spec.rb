@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Registered User Permissions" do
   before(:each) do
-    3.times{create(:role)}
-    @user = create(:user)
-    @user.roles << Role.find_by(name: "registered_user")
+    create_roles
+    @user = registered_user
   end
 
   scenario "homes#show" do
