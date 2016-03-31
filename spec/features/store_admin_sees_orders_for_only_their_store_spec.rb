@@ -43,6 +43,16 @@ RSpec.feature "Store admin sees orders for only their store" do
     end
     expect(page).to have_content "#{item_1.title}"
     expect(page).not_to have_content "#{item_2.title}"
+    click_on "Logout"
+
+    login(user3)
+
+    click_on "Store Admin Information"
+    within "#store-info" do
+      click_on "#1"
+    end
+    expect(page).to have_content "#{item_2.title}"
+    expect(page).not_to have_content "#{item_1.title}"
 
 
 
