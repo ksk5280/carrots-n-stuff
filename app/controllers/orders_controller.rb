@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
       @order.update(drone: params[:drone].to_i)
       flash[:success] = "Order ##{@order.id} is #{@order.drone}."
       if current_user.store
+        Drone.request_drone()
         redirect_to admin_order_path(@order.id)
       else
         redirect_to order_path(@order.id)
