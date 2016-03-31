@@ -10,6 +10,7 @@ RSpec.feature "Store admin sees orders for only their store" do
     create_categories
     store = approved_store(user2)
     item_1 = item(store)
+
     store2 = approved_store2(user3)
     item_2 = item2(store2)
 
@@ -32,6 +33,17 @@ RSpec.feature "Store admin sees orders for only their store" do
     end
 
     click_on "Checkout"
+    click_on "Logout"
+
+    login(user2)
+
+    click_on "Store Admin Information"
+    within "#store-info" do
+      click_on "#1"
+    end
+    expect(page).to have_content "#{item_1.title}"
+    expect(page).not_to have_content "#{item_2.title}"
+
 
 
   end
