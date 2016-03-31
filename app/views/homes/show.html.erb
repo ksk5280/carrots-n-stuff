@@ -1,28 +1,28 @@
 <div class="jumbotron">
-  <div class="container text-center">
+  <div class="text-center">
     <h1>Feed your soul</h1>
     <h3>Fresh organic produce delivered straight to your doorstep</h3>
   </div>
 </div>
 <div class="text-center row">
-  <div class="padded-top padded-bottom">
-    <h1 class="green-font">Featured Markets</h1>
+  <div class="padded-top">
+    <h1>Featured Markets</h1>
     <div class="stores">
       <%= render partial: "shared/store", collection: @stores %>
     </div>
   </div>
 </div>
 <div class="text-center row">
-  <div class="padded-bottom padded-top">
-    <h1 class="green-font">Featured Categories</h1>
+  <div class="padded-top">
+    <h1>Featured Categories</h1>
     <div class="categories">
       <%= render partial: "shared/category", collection: @categories %>
     </div>
   </div>
 </div>
 <div class="text-center row">
-  <div class="padded-bottom padded-top">
-    <h1 class="green-font">Featured Items</h1>
+  <div class="padded-top">
+    <h1>Featured Items</h1>
     <div class="items">
       <%= render partial: "shared/item", collection: @items %>
     </div>

@@ -1,14 +1,12 @@
 <div class="col-md-4">
-  <div class="item-display">
+  <div class="item-display padded-top">
     <%= link_to image_tag(item.image), store_item_path(item.store.slug, item.id)%>
     <div class="item-description text-center">
-      <div class="btn-font-size green-font">
-        <h4><%= link_to "#{item.title}", store_item_path(item.store.slug, item.id), class: "green-font" %></h4>
-        <p><%= link_to "#{item.store.name}", store_root_path(item.store.slug) %></p>
+      <h4><%= link_to "#{item.title} - #{format_price(item.price)}", store_item_path(item.store.slug, item.id) %></h4>
+      <p><%= link_to "#{item.store.name}", store_root_path(item.store.slug) %></p>
+      <div class="small-padded-bottom"><%= button_to "Add to Cart", cart_items_path(item_id: item.id),
+        class: "btn btn-default btn-font-size" %>
       </div>
-      <div class="btn-pricing"><%= format_price(item.price) %></div>
-      <%= button_to "Add to Cart", cart_items_path(item_id: item.id),
-        class: "btn item-btn btn-font-size" %>
     </div>
   </div>
 </div>

@@ -11,11 +11,11 @@ RSpec.feature "store admin can hire and fire new store managers" do
 
     visit "/#{store.slug}"
 
-    click_on "Apply for Manager position"
+    click_on "Apply for Manager Position"
     expect(page).to have_content "Your application has been submitted."
 
     visit "/#{store.slug}"
-    expect(page).not_to have_button "Apply for Manager position"
+    expect(page).not_to have_button "Apply for Manager Position"
 
     click_on "Logout"
 

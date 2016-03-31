@@ -1,0 +1,14 @@
+.btn-default {
+  background-color: $orange;
+  color: white;
+  border: 0;
+}
+
+.btn-default:hover {
+  background-color: lighten($orange, 10%);
+  color: white;
+}
+
+.button_to {
+  display: inline-block;
+}

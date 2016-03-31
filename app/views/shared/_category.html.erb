@@ -1,10 +1,8 @@
 <div class="col-md-4">
-  <div class="category-display item-display">
+  <div class="store-display padded-top">
     <%= link_to image_tag(category.image), category_path(category.slug)%>
     <div class="item-description text-center">
-      <div class="btn-font-size green-font">
-        <%= link_to "#{category.title}", category_path(category.slug), class: "green-font" %>
-      </div>
+      <h4><%= link_to "#{category.title}", category_path(category.slug) %></h4>
     </div>
   </div>
 </div>

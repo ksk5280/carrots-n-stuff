@@ -1,10 +1,8 @@
 <div class="col-md-4">
-  <div class="store-display item-display">
+  <div class="store-display padded-top">
     <%= link_to image_tag(store.image_url), store_root_path(store.slug)%>
     <div class="item-description text-center">
-      <div class="btn-font-size green-font">
-        <h4><%= link_to "#{store.name}", store_root_path(store.slug), class: "green-font" %></h4>
-      </div>
+      <h4><%= link_to "#{store.name}", store_root_path(store.slug) %></h4>
     </div>
   </div>
 </div>

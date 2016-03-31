@@ -1,5 +1,5 @@
 <tr>
-  <td><h5><%= link_to "##{order.id}", order_path(order.id) %></h5></td>
-  <td><h5><%= order.status %></h5></td>
-  <td><h5><%= order.formatted_creation_date %></h5></td>
+  <td><%= link_to "##{order.id}", order_path(order.id) %></td>
+  <td><%= order.status %></td>
+  <td><%= order.formatted_creation_date %></td>
 </tr>

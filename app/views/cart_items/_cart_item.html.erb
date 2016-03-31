@@ -6,17 +6,15 @@
     <h3><%= link_to item.title, store_item_path(item.store.slug, item.id) %></h3>
     <h5><%= link_to "#{item.store.name}", store_root_path(item.store.slug) %></h5>
     <h4><%= item.description %></h4>
-    <p class="btn-pricing"><%= format_price(item.price) %></p>
-    <p class="btn-pricing">Qty. <%= quantity %></p>
+    <h4><%= format_price(item.price) %></h4>
+    <h4>Qty. <%= quantity %></h4>
+    <h4>Subtotal: <%= format_price(item.price * quantity) %></h4>
   </div>
   <div class="col-md-3">
     <%= button_to "Increase quantity", cart_items_path(item_id: item.id), class: "btn btn-success btn-font-size cart-item-buttons" %>
     <%= button_to "Decrease quantity", cart_items_path(item_id: item.id, subtract: true), class: "btn btn-warning btn-font-size cart-item-buttons" %>
     <%= button_to "Remove", cart_item_path(item.id), class: "btn btn-danger btn-font-size cart-item-buttons", method: "delete" %>
   </div>
-  <div class="col-md-12 item-subtotal text-right">
-    <h5 class= "green-font">
-      Subtotal: <%= format_price(item.price * quantity) %>
-    </h5>
+  <div class="col-md-12 padded-bottom">
   </div>
 </div>

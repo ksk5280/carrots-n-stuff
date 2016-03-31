@@ -7,7 +7,7 @@ module ApplicationHelper
     else
       button_to "Add to Cart",
                 cart_items_path(item_id: item.id),
-                class: "btn item-btn btn-font-size"
+                class: "btn btn-default btn-font-size"
     end
   end
 

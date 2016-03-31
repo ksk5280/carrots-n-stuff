@@ -1,0 +1,11 @@
+.table-default {
+  th, td {
+    font-size: 18px;
+  }
+  th {
+    background-color: $faintred;
+  }
+  td.nowrap {
+    white-space: nowrap;
+  }
+}
