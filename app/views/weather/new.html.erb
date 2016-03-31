@@ -2,6 +2,6 @@
   <%= form_for(:weather, url: weather_index_path) do |f| %>
     <h4><%= f.label :us_city, "US City" %></h4>
     <h4><%= f.text_field :us_city %></h4>
-    <%= f.submit "Check Weather", class: "btn btn-success btn-font-size" %>
+    <%= f.submit "Check Weather", class: "btn btn-default btn-font-size" %>
   <% end %>
 </div>

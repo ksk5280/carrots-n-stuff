@@ -1,7 +1,7 @@
 <div class="text-center row">
-  <div class="padded-bottom">
-    <h1 class="green-font" >Welcome to <%= current_store.name %>!</h1>
-    <h4 class="green-font" ><%= current_store.description %></h4>
+  <div class="padded-top">
+    <h1>Welcome to <%= current_store.name %>!</h1>
+    <h4><%= current_store.description %></h4>
     <%= image_tag current_store.image_url, alt: current_store.name %>
 
     <%= render partial: "shared/user_applicant" if current_user && !current_user.store %>

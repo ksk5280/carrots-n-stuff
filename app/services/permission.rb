@@ -44,6 +44,7 @@ class Permission
     def platform_admin_permissions
       return true if controller == 'homes' && action.in?(%w(show))
       return true if controller == 'items' && action.in?(%w(index))
+      return true if controller == 'cart_items' && action.in?(%w(index create destroy))
       return true if controller == 'stores' && action.in?(%w(index new create show update destroy))
       return true if controller == 'categories' && action.in?(%w(index show new create edit update destroy))
       return true if controller == 'stores/items' && action.in?(%w(index new show))

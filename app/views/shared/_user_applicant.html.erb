@@ -1,5 +1,5 @@
 <%= form_for(current_user, method: :patch) do |f| %>
   <input type="hidden" name="status" value="0">
   <input type="hidden" name="store_id" value="<%= current_store.id %>">
-  <%= f.submit "Apply for Manager position" %>
+  <%= f.submit "Apply for Manager Position", class: "btn btn-default btn-font-size" %>
 <% end %>

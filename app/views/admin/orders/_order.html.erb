@@ -1,20 +1,20 @@
 <tr>
-  <td class="text-center"><h5><%= link_to "##{order.id}", admin_order_path(order.id) %></h5></td>
-  <td class="text-center"><h5><%= order.status %></h5></td>
-  <td class="text-center"><h5><%= order.created_at.strftime("%B %-d, %Y") %></h5></td>
+  <td class="text-center"><%= link_to "##{order.id}", admin_order_path(order.id) %></td>
+  <td class="text-center"><%= order.status %></td>
+  <td class="text-center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
   <% if order.status == "paid" %>
-    <td class="text-center"><%= button_to "Cancel order", order_path(order, status: "cancelled"), method: :patch, class: "btn btn-danger btn-font-size" %>
-    <%= button_to "Mark as completed", order_path(order, status: "completed"), method: :patch, class: "btn btn-success btn-font-size" %></td>
+    <td class="text-center nowrap"><%= button_to "Cancel order", order_path(order, status: "cancelled"), method: :patch, class: "btn btn-danger" %>
+    <%= button_to "Mark as completed", order_path(order, status: "completed"), method: :patch, class: "btn btn-default" %></td>
   <% elsif order.status == "ordered" %>
-    <td class="text-center"><%= button_to "Cancel order", order_path(order, status: "cancelled"), method: :patch, class: "btn btn-danger btn-font-size"%>
-    <%= button_to "Mark as paid", order_path(order, status: "paid"), method: :patch, class: "btn btn-success btn-font-size"%></td>
+    <td class="text-center"><%= button_to "Cancel order", order_path(order, status: "cancelled"), method: :patch, class: "btn btn-danger"%>
+    <%= button_to "Mark as paid", order_path(order, status: "paid"), method: :patch, class: "btn btn-default"%></td>
   <% else %>
     <td></td>
   <% end %>
-  <td class="text-center"><h5><%= order.drone.capitalize if order.drone %></h5></td>
+  <td class="text-center"><%= order.drone.capitalize if order.drone %></td>
   <% if order.pending? %>
-    <td class="text-center"><%= button_to "Confirm", order_path(order, drone: 3 ), method: :patch, class: "btn btn-success btn-font-size"%>
-    <%= button_to "Decline", order_path(order, drone: 2), method: :patch, class: "btn btn-danger btn-font-size"%></td>
+    <td class="text-center"><%= button_to "Confirm", order_path(order, drone: 3 ), method: :patch, class: "btn btn-default"%>
+    <%= button_to "Decline", order_path(order, drone: 2), method: :patch, class: "btn btn-danger"%></td>
   <% else %>
     <td class="text-center"></td>
   <% end %>

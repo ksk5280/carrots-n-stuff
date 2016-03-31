@@ -1,6 +1,8 @@
-<h1>Create a Category</h1>
-<%= form_for @category do |f| %>
+<div class="container text-center padded-top">
+  <h1>Create a Category</h1>
+  <%= form_for @category do |f| %>
   <h4><%= f.label :title %></h4>
   <h4><%= f.text_field :title %></h4>
-  <p><%= f.submit "Create Category", class: "btn btn-success btn-font-size" %></p>
-<% end %>
+  <p><%= f.submit "Create Category", class: "btn btn-default btn-font-size" %></p>
+  <% end %>
+</div>

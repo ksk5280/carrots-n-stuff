@@ -1,8 +1,8 @@
 <% pending_employees.each do |employee| %>
-  <%= "#{employee.first_name} #{employee.last_name}: #{employee.status}" %>
+  <h4><%= "#{employee.first_name} #{employee.last_name}: #{employee.status}" %></h4>
   <%= form_for(employee, method: :patch) do |f| %>
     <input type="hidden" name="status" value="1">
     <input type="hidden" name="user_id" value="<%= employee.id %>">
-    <%= f.submit "Hire applicant" %>
+    <%= f.submit "Hire applicant", class: "btn btn-default btn-font-size" %>
   <% end %>
 <% end %>

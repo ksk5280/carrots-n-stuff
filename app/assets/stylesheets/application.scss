@@ -12,12 +12,32 @@
  *
  */
 
+$darkblue: #2b5f77;
+$powderblue: #bbe2db;
+$white: #ffffff;
+$smokywhite: #f5f5f5;
+$translucentwhite: rgba(255, 255, 255, 0.7);
+$mediumgreen: #7ab55c;
+
+$darkred: #5A1F00;
+$faintred: #eee7e5;
+$orange: #D1570D;
+$lightyellow: #FDE792;
+$darkgreen: #477725;
+$lightgreen: #A9CC66;
+
 @import url(https://fonts.googleapis.com/css?family=Mouse+Memoirs);
+@import url(https://fonts.googleapis.com/css?family=Cabin:400);
+@import url(https://fonts.googleapis.com/css?family=Cabin:700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "global";
 @import "fonts_colors";
 @import "shapes";
 @import "navbars";
 @import "items_carts";
 @import "landing_page";
 @import "weather";
+@import "dashboard";
+@import "tables";

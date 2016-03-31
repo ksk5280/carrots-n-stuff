@@ -1,5 +1,5 @@
-<%= link_to "Create New Category", new_category_path, class: "btn btn-success btn-font-size" %>
-<table class="table">
+<%= link_to "Create New Category", new_category_path, class: "btn btn-default btn-font-size" %>
+<table class="table padded-top table-default table-hover">
   <tr>
     <th>Name</th>
     <th></th>
@@ -9,7 +9,7 @@
         <td><%= category.title %></td>
         <td>
           <%= link_to "Update Category", edit_category_path(category.slug), class: "btn btn-success btn-font-size" %>
-          <%= link_to "Delete Category", delete_category_path(category.slug), class: "btn btn-success btn-font-size", method: :delete %>
+          <%= link_to "Delete Category", delete_category_path(category.slug), class: "btn btn-default btn-font-size", method: :delete %>
         </td>
       </tr>
     <% end %>

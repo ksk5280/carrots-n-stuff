@@ -1,64 +1,28 @@
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <%= image_tag "colorful-carrots.jpg", alt: "colorful carrots" %>
-      <div class="carousel-caption">
-        <h2>Carrots Galore</h2>
-        <h4>Create an account to take advantage of wonderful home-grown goods</h4>
-      </div>
-    </div>
-    <div class="item">
-        <%= image_tag "fresh-produce.jpg", alt: "fresh produce" %>
-        <div class="carousel-caption">
-        <h2>Freshest Products</h2>
-        <h4>Click here to see what's newest and most fresh on the shelves</h4>
-      </div>
-    </div>
-    <div class="item">
-      <%= image_tag "produce.jpg", alt: "produce" %>
-      <div class="carousel-caption">
-        <h2>Featured Market</h2>
-        <h4>See what out featured market has on special this week!</h4>
-      </div>
-    </div>
+<div class="jumbotron">
+  <div class="text-center">
+    <h1>Feed your soul</h1>
+    <h3>Fresh organic produce delivered straight to your doorstep</h3>
   </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
 </div>
-
 <div class="text-center row">
-  <div class="padded-top padded-bottom">
-    <h1 class="green-font">Featured Markets</h1>
+  <div class="padded-top">
+    <h1>Featured Markets</h1>
     <div class="stores">
       <%= render partial: "shared/store", collection: @stores %>
     </div>
   </div>
 </div>
 <div class="text-center row">
-  <div class="padded-bottom padded-top">
-    <h1 class="green-font">Featured Categories</h1>
+  <div class="padded-top">
+    <h1>Featured Categories</h1>
     <div class="categories">
       <%= render partial: "shared/category", collection: @categories %>
     </div>
   </div>
 </div>
 <div class="text-center row">
-  <div class="padded-bottom padded-top">
-    <h1 class="green-font">Featured Items</h1>
+  <div class="padded-top">
+    <h1>Featured Items</h1>
     <div class="items">
       <%= render partial: "shared/item", collection: @items %>
     </div>
