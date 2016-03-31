@@ -26,7 +26,7 @@ RSpec.feature "store admin can approve drone strike" do
     end
 
     click_on "Checkout"
-    click_on "Request Delivery"
+    click_on "Request Drone Delivery"
     click_on "Logout"
     expect(current_path).to eq(root_path)
 
@@ -69,7 +69,7 @@ RSpec.feature "store admin can approve drone strike" do
     end
 
     click_on "Checkout"
-    click_on "Request Delivery"
+    click_on "Request Drone Delivery"
     click_on "Logout"
     expect(current_path).to eq(root_path)
 
