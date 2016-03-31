@@ -9,12 +9,13 @@
     <td class="text-center"><%= button_to "Cancel order", order_path(order, status: "cancelled"), method: :patch, class: "btn btn-danger btn-font-size"%>
     <%= button_to "Mark as paid", order_path(order, status: "paid"), method: :patch, class: "btn btn-success btn-font-size"%></td>
   <% else %>
+    <td></td>
   <% end %>
   <td class="text-center"><h5><%= order.drone.capitalize if order.drone %></h5></td>
   <% if order.pending? %>
     <td class="text-center"><%= button_to "Confirm", order_path(order, drone: 3 ), method: :patch, class: "btn btn-success btn-font-size"%>
     <%= button_to "Decline", order_path(order, drone: 2), method: :patch, class: "btn btn-danger btn-font-size"%></td>
   <% else %>
-    <td></td>
+    <td class="text-center"></td>
   <% end %>
 </tr>
