@@ -1,0 +1,7 @@
+.nav-tabs {
+  font-size: 32px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: $orange;
+}
