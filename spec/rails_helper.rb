@@ -36,6 +36,18 @@ def store_admin
   store_admin
 end
 
+def store_manager
+  store_manager = User.create(username: "store",
+                                 password: "password",
+                                 first_name: "sto",
+                                 last_name: "re",
+                                 email: "store@store.co",
+                                 address: "Denver CO")
+  store_manager.roles << Role.find_by(name: "registered_user")
+  store_manager.roles << Role.find_by(name: "store_manager")
+  store_manager
+end
+
 def store_admin2
   store_admin = User.create(username: "store2",
                                  password: "password",
