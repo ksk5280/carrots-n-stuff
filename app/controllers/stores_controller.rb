@@ -4,10 +4,6 @@ class StoresController < ApplicationController
     @stores = Store.all_active
   end
 
-  def show
-    @store = Store.find_by(slug: params[:slug])
-  end
-
   def new
     @store = Store.new
   end

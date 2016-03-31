@@ -11,6 +11,10 @@ RSpec.feature "User creates order" do
     visit root_path
 
     click_button "Add to Cart"
+    within ".stores" do
+      click_on "#{store.name}"
+    end
+    expect(current_path).to eq "/#{store.slug}"
     click_button "Add to Cart"
 
     within ".navbar-right" do
