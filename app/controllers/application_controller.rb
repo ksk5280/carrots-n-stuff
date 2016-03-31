@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pending_employees
-    current_user.store.users.where(status: "Pending")
+    current_user.store.users.where(status: 0)
   end
 
   def current_employees
