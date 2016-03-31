@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
 
   def index
-    @stores = Store.where(status: 2)
+    @stores = Store.all_active
   end
 
   def show
@@ -13,8 +13,9 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = current_user.stores.new(store_params)
+    @store = Store.new(store_params)
     if @store.save
+      current_user.update_attribute("store_id", @store.id)
       current_user.roles << Role.find_by(name: "store_admin")
       flash[:success] = "Store successfully requested."
       redirect_to dashboard_path
@@ -33,7 +34,7 @@ class StoresController < ApplicationController
     if current_user.platform_admin? && params[:status]
       @store.status = params[:status].to_i
       if @store.save
-        flash[:alert] = "Store successfully updated."
+        flash[:success] = "Store successfully updated."
       else
         flash.now[:danger] = @store.errors.full_messages.join(", ")
       end
@@ -41,7 +42,7 @@ class StoresController < ApplicationController
     else
       @store.update_attributes(store_params)
       if @store.save
-        flash[:alert] = "Store successfully updated."
+        flash[:success] = "Store successfully updated."
         redirect_to dashboard_path
       else
         flash.now[:danger] = @store.errors.full_messages.join(", ")
@@ -51,7 +52,8 @@ class StoresController < ApplicationController
   end
 
   def destroy
-    current_user.stores.first.destroy
+    store = Store.find_by(slug: params[:id])
+    store.destroy
     UserRole.where(user_id: current_user.id).find_by(role_id: Role.find_by(name: "store_admin").id).destroy
     flash[:success] = "Store has been successfully deleted."
     redirect_to dashboard_path

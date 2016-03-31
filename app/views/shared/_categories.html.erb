@@ -1,0 +1,16 @@
+<%= link_to "Create New Category", new_category_path, class: "btn btn-success btn-font-size" %>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td>
+          <%= link_to "Update Category", edit_category_path(category.slug), class: "btn btn-success btn-font-size" %>
+          <%= link_to "Delete Category", delete_category_path(category.slug), class: "btn btn-success btn-font-size", method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+</table>

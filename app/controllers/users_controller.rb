@@ -19,9 +19,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @orders = Order.all
+    if current_user.store
+
+    end
+    @orders = current_user.store.orders if current_user.store
     #TODO link order with store
     @stores = Store.all
+    @categories = Category.all
   end
 
   def edit
@@ -29,13 +33,33 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    if @user.save
-      flash[:success] = "Account successfully updated."
+    if current_user.store_admin? && params[:status] == "1"
+      user = User.find(params[:user_id].to_i)
+      user.update_attribute("status", params[:status].to_i)
+      user.roles << Role.find_by(name: "store_manager")
+      flash[:success] = "#{user.first_name} #{user.last_name} is now a #{user.store.name} team member."
+      redirect_to dashboard_path
+    elsif params[:status] == "0"
+      current_user.update_attribute("status", params[:status].to_i)
+      current_user.update_attribute("store_id", params[:store_id])
+      flash[:success] = "Your application has been submitted."
+      store = Store.find(params[:store_id])
+      redirect_to store_root_path(store.slug)
+    elsif params[:status] == "2"
+      user = User.find(params[:user_id].to_i)
+      user.update_attribute("status", nil)
+      UserRole.where(user_id: user.id).find_by(role_id: Role.find_by(name: "store_manager").id).destroy
+      flash[:success] = "#{user.first_name} #{user.last_name} has been fired"
       redirect_to dashboard_path
     else
-      flash[:danger] = @user.errors.full_messages.join(", ")
-      render :edit
+      @user.update(user_params)
+      if @user.save
+        flash[:success] = "Account successfully updated."
+        redirect_to dashboard_path
+      else
+        flash[:danger] = @user.errors.full_messages.join(", ")
+        render :edit
+      end
     end
   end
 
@@ -47,7 +71,9 @@ class UsersController < ApplicationController
                                  :first_name,
                                  :last_name,
                                  :address,
-                                 :email)
+                                 :email,
+                                 :status,
+                                 :store_id)
   end
 
   def set_user

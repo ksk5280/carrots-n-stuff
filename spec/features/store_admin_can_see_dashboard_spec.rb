@@ -2,25 +2,40 @@ require "rails_helper"
 
 RSpec.feature "Store admin can see store admin dashboard" do
   scenario "can see store admin dashboard" do
-    create_roles
-    user = store_admin
+      create_roles
+      user = registered_user
+      user2 = store_admin
 
-    store = pending_store(user)
+      create_categories
+      store = approved_store(user2)
+      item_1 = item(store)
 
-    create_categories
+      login(user)
+      visit items_path
 
-    item2(store)
+      within ".navbar-right" do
+        expect(page).to have_content "(0)"
+      end
 
-    order = Order.create(user_id: user.id, status: "paid")
+      visit store_item_path(store.slug, item_1.id)
+      click_on "Add to Cart"
 
-    login(user)
+      within ".navbar-right" do
+        expect(page).to have_content "(1)"
+        click_on "Cart"
+      end
 
-    expect(current_path).to eq("/dashboard")
+      click_on "Checkout"
+      click_on "Request Delivery"
+      click_on "Logout"
+      expect(current_path).to eq(root_path)
 
-    click_on "Store Admin Information"
+      login(user2)
 
-    expect(page).to have_content "##{order.id}"
-    expect(page).to have_content "Carrots"
-    expect(page).to have_content "$5.00"
+      click_on "Store Admin Information"
+
+      expect(page).to have_content "##{Order.first.id}"
+      expect(page).to have_content "Celery"
+      expect(page).to have_content "$10.00"
   end
 end

@@ -1,14 +1,11 @@
 <div class = "row">
   <div class = "padded-bottom text-center">
-  <h3><%= link_to "All Orders", user_orders_path %></h3>
+  <h3><%= link_to "All Orders", orders_path %></h3>
   </div>
 </div>
 <div class = "row">
   <div class = "col-md-6 col-md-offset-3">
     <h2>Order #<%= @order.id %></h2>
-    <% if current_admin? %>
-    <%= render partial: "users/user_info", locals: {user: @order.user} %>
-    <% end %>
     <%= render partial: "orders/status" %>
   </div>
 </div>
@@ -16,3 +13,4 @@
   <%= render partial: "orders/line_item", collection: @order.line_items %>
 </div>
 <%= render partial: "orders/total" %>
+<%= render partial: "shared/drone_button" if @order.unrequested? %>

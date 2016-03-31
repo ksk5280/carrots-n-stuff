@@ -5,10 +5,10 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-
+include ApplicationHelper
 
 def create_roles
-  %w(registered_user store_admin platform_admin).each do |role|
+  %w(registered_user store_admin platform_admin store_manager).each do |role|
     Role.create(name: role)
   end
 end
@@ -36,6 +36,18 @@ def store_admin
   store_admin
 end
 
+def store_admin2
+  store_admin = User.create(username: "store2",
+                                 password: "password",
+                                 first_name: "store",
+                                 last_name: "admin",
+                                 email: "store@store.co",
+                                 address: "Denver CO")
+  store_admin.roles << Role.find_by(name: "registered_user")
+  store_admin.roles << Role.find_by(name: "store_admin")
+  store_admin
+end
+
 def platform_admin
   platform_admin = User.create(username: "admin",
                               password: "password",
@@ -50,27 +62,47 @@ def platform_admin
 end
 
 def pending_store(user)
-  user.stores.create(name: "Mod Market",
-               description: "Modern times calls for modern Markets..",
-               status: 0)
+  store = Store.create(name: "Mod Market",
+                       description: "Modern times calls for modern Markets..",
+                       status: 0)
+  user.update_attributes(store_id: store.id)
+  store
 end
 
 def approved_store(user)
-  user.stores.create(name: "Approved",
-               description: "We just got approved ya'll",
-               status: 2)
+  store = Store.create(name: "Approved",
+                       description: "We just got approved ya'll",
+                       status: 2)
+  user.update_attributes(store_id: store.id)
+  store
+end
+
+def approved_store2(user)
+  store = Store.create(name: "Newly Approved",
+                       description: "We just got approved ya'll",
+                       status: 2)
+  user.update_attributes(store_id: store.id)
+  store
 end
 
 def suspended_store(user)
-  user.stores.create(name: "Suspended",
-               description: "We were bad and now we're suspended..",
-               status: 1)
+  store = Store.create(name: "Suspended",
+                       description: "We were bad and now we're suspended..",
+                       status: 1)
+  user.update_attributes(store_id: store.id)
+  store
 end
 
 def create_categories
   %w(Fruits Vegetables Greens).each do |category|
     Category.create(title: category)
   end
+end
+
+def create_category
+  click_on "Create New Category"
+  fill_in "Title", with: "That New New"
+  click_on "Create Category"
 end
 
 def item(store)
@@ -81,6 +113,7 @@ def item(store)
 end
 
 def item2(store)
+
   store.items.create(title: "Carrots",
               description: "Orange, crunchy",
               price: 500,
@@ -108,9 +141,11 @@ def create_store(user)
   click_button "Submit"
 end
 
-def create_item
-  click_on "Create item"
-  fill_in "Title", with: "Carrots"
+def create_item(title = "Carrots")
+  within "#store-info" do
+    click_on "Create item"
+  end
+  fill_in "Title", with: title
   fill_in "Description", with: "Yum yum!"
   fill_in "Price", with: 1000
   check "Fruits"

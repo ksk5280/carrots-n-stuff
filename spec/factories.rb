@@ -25,6 +25,7 @@ FactoryGirl.define do
     password "password"
     first_name "Jane"
     last_name "Doe"
+    email "blahblah@blah.com"
     address "1510 Blake St., Denver, CO, 80202"
 
     factory :user_with_roles do

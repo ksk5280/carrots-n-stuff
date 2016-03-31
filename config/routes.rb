@@ -25,9 +25,12 @@ Rails.application.routes.draw do
   resources :weather, only: [:create, :show, :new]
   get "/homes", to: "homes#index"
 
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :new, :create]
 
-  get "/categories/:category", to: "categories#show", as: "category"
+  get "/categories/:slug", to: "categories#show", as: "category"
+  get "/categories/:slug/edit", to: "categories#edit", as: "edit_category"
+  put "/categories/:slug", to: "categories#update", as: "update_category"
+  delete "/categories/:slug", to: "categories#destroy", as: "delete_category"
 
   get "/:slug/edit", to: "stores#edit", as: "edit_store"
 

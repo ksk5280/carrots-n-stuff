@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include ActionView::Helpers::NumberHelper
+
   def add_to_cart_button(item)
     if item.retired
       "Item has been retired"
@@ -9,7 +11,7 @@ module ApplicationHelper
     end
   end
 
-  def secret_session?
-    !!session[:serious]
+  def format_price(price)
+    number_to_currency(price.to_f / 100)
   end
 end
