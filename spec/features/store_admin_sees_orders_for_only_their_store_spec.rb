@@ -12,7 +12,7 @@ RSpec.feature "Store admin sees orders for only their store" do
     item_1 = item(store)
 
     store2 = approved_store2(user3)
-    item_2 = item2(store2)
+    item_2 = item3(store2)
 
     login(user)
     visit items_path
@@ -34,13 +34,14 @@ RSpec.feature "Store admin sees orders for only their store" do
 
     click_on "Checkout"
     click_on "Logout"
+    expect(current_path).to eq(root_path)
 
     login(user2)
 
     click_on "Store Admin Information"
-    within "#store-info" do
-      click_on "#1"
-    end
+
+    click_on "##{Order.first.id}"
+
     expect(page).to have_content "#{item_1.title}"
     expect(page).not_to have_content "#{item_2.title}"
     click_on "Logout"
@@ -49,7 +50,7 @@ RSpec.feature "Store admin sees orders for only their store" do
 
     click_on "Store Admin Information"
     within "#store-info" do
-      click_on "#1"
+      click_on "##{Order.first.id}"
     end
     expect(page).to have_content "#{item_2.title}"
     expect(page).not_to have_content "#{item_1.title}"
