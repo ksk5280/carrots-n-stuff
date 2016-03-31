@@ -6,6 +6,10 @@ RSpec.feature "visitor logs in" do
       create_roles
       user = registered_user
 
+      visit "/"
+      visit "/orders"
+      expect(page).to have_content "You are not allowed to visit this page."
+
       login(user)
 
       expect(current_path).to eq "/dashboard"

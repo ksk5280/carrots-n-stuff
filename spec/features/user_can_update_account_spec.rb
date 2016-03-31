@@ -27,6 +27,17 @@ RSpec.feature "user can update an account" do
       expect(page).to have_content "Pokemon"
       expect(page).to have_content "1 fake ln, KY USA"
       expect(page).to have_content "a@example.com"
+
+      click_on "Update Account"
+
+      fill_in "Username", with: ""
+      fill_in "First name", with: ""
+      fill_in "Last name", with: ""
+      fill_in "Password", with: ""
+
+      click_on "Update Account"
+
+      expect(page).to have_content "Password can't be blank"
     end
   end
 end
