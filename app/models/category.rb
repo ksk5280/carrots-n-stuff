@@ -6,10 +6,6 @@ class Category < ActiveRecord::Base
 
   before_validation :generate_slug
 
-  def non_retired_items
-    items.where(retired: false)
-  end
-
   def generate_slug
     self.slug = title.parameterize if title
   end
