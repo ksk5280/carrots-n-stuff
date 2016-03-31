@@ -26,7 +26,7 @@ RSpec.feature "Store admin can see store admin dashboard" do
       end
 
       click_on "Checkout"
-      click_on "Request Delivery"
+      click_on "Request Drone Delivery"
       click_on "Logout"
       expect(current_path).to eq(root_path)
 
