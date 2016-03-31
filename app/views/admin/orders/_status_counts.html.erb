@@ -1,3 +1,0 @@
-<% Order.statuses.each do |status| %>
-  <div class="col-md-3 text-center"><h4><%= link_to status.capitalize, admin_status_path(status: status), class: "green-font"%>: <%= @orders.status_total(status) %></h4></div>
-<% end %>

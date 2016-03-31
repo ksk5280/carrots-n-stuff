@@ -19,11 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user.store
-
-    end
-    @orders = current_user.store.orders if current_user.store
-    #TODO link order with store
+    @orders = current_user.store.orders.distinct if current_user.store
     @stores = Store.all
     @categories = Category.all
   end

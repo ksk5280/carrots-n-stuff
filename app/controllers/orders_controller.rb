@@ -34,11 +34,15 @@ class OrdersController < ApplicationController
     if params[:drone]
       @order.update(drone: params[:drone].to_i)
       flash[:success] = "Order ##{@order.id} is #{@order.drone}."
-      redirect_to order_path(@order.id)
+      if current_user.store
+        redirect_to admin_order_path(@order.id)
+      else
+        redirect_to order_path(@order.id)
+      end
     else
       @order.update(status: params[:status])
       flash[:success] = "Order ##{@order.id} has been #{@order.status}."
-      redirect_to admin_dashboard_index_path
+      redirect_to dashboard_path
     end
   end
 end

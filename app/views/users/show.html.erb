@@ -1,10 +1,24 @@
 <div>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#user_info" aria-controls="user_info" role="tab" data-toggle="tab">User Information</a></li>
-    <% if current_user.store_admin?  %><li role="presentation"><a href="#store-info" aria-controls="store-info" role="tab" data-toggle="tab">Store Admin Information</a></li> <% end %>
-    <% if current_user.store_manager?  %><li role="presentation"><a href="#store_manager_info" aria-controls="store_manager_info" role="tab" data-toggle="tab">Store Manager Information</a></li> <% end %>
-    <% if current_user.platform_admin? %><li role="presentation"><a href="#platform_info" aria-controls="platform_info" role="tab" data-toggle="tab">Platform Admin Information</a></li><% end %>
+    <li role="presentation" class="active">
+      <a href="#user_info" aria-controls="user_info" role="tab" data-toggle="tab">User Information</a>
+    </li>
+    <% if current_user.store_admin?  %>
+      <li role="presentation">
+        <a href="#store-info" aria-controls="store-info" role="tab" data-toggle="tab">Store Admin Information</a>
+      </li>
+    <% end %>
+    <% if current_user.store_manager?  %>
+    <li role="presentation">
+      <a href="#store_manager_info" aria-controls="store_manager_info" role="tab" data-toggle="tab">Store Manager Information</a>
+    </li>
+    <% end %>
+    <% if current_user.platform_admin? %>
+      <li role="presentation">
+        <a href="#platform_info" aria-controls="platform_info" role="tab" data-toggle="tab">Platform Admin Information</a>
+      </li>
+    <% end %>
   </ul>
 
   <!-- Tab panes -->
@@ -18,60 +32,53 @@
             <%= render partial: "shared/user_info", locals: {user: current_user} %>
           </div>
         </div>
-        <div class="text-center row">
-          <!-- This is where user info and orders goes -->
-
-        </div>
       </div>
     </div>
     <div role="tabpanel" class="tab-pane padded-left padded-top padded-right" id="store-info">
       <% if current_user.store_admin? %>
         <h1>Store Information<%=" - #{current_user.store.name}" if current_user.store%></h1>
 
+      <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
 
-        <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
+      <h3><%= "Applicants:" %></h3>
+      <%= render partial: "shared/pending_employees" if current_user.store %>
+      <h3><%= "Employees:" %></h3>
+      <%= render partial: "shared/current_employees" if current_user.store %>
 
-        <h3><%= "Applicants:" %></h3>
-        <%= render partial: "shared/pending_employees" if current_user.store %>
-        <h3><%= "Employees:" %></h3>
-        <%= render partial: "shared/current_employees" if current_user.store %>
+      <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
 
-        <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
-
-        <div class="text-center row">
-          <div class="padded-top padded-bottom">
-            <h2 class="green-font">All Orders</h1>
-          </div>
+      <div class="text-center row">
+        <div class="padded-top padded-bottom">
+          <h2 class="green-font">All Orders</h1>
         </div>
-        <div class="orders row">
-          <table class="table table-condensed table-hover orders-table">
-            <%= render partial: "admin/orders/status_counts" %>
-            <%= render partial: "admin/orders/table_headers" %>
-            <%= render partial: "admin/orders/order", collection: @orders %>
-          </table>
-        </div>
+      </div>
+      <div class="orders row">
+        <table class="table table-condensed table-hover orders-table">
+          <%= render partial: "admin/orders/table_headers" %>
+          <%= render partial: "admin/orders/order", collection: @orders %>
+        </table>
+      </div>
       <% end %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="store_manager_info">
       <% if current_user.store_manager? %>
-        <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
+      <h1>Store information<%=" - #{current_user.store.name}" if current_user.store%></h1>
 
-        <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
+      <h3><%= "Status: #{current_user.store.status.capitalize}" if current_user.store %></h3>
 
-        <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
-        <div class="text-center row">
-          <div class="padded-top padded-bottom">
-            <h2 class="green-font">All Orders</h1>
-          </div>
+      <%= render partial: "shared/item_table", locals: {items: current_user.store.items} if current_user.store %>
+      <div class="text-center row">
+        <div class="padded-top padded-bottom">
+          <h2 class="green-font">All Orders</h1>
         </div>
-        <div class="orders row">
-          <table class="table table-condensed table-hover orders-table">
-            <%= render partial: "admin/orders/status_counts" %>
-            <%= render partial: "admin/orders/table_headers" %>
-            <%= render partial: "admin/orders/order", collection: @orders %>
-          </table>
-        </div>
+      </div>
+      <div class="orders row">
+        <table class="table table-condensed table-hover orders-table">
+          <%= render partial: "admin/orders/table_headers" %>
+          <%= render partial: "admin/orders/order", collection: @orders %>
+        </table>
+      </div>
       <% end %>
     </div>
 
