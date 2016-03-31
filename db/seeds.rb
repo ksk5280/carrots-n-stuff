@@ -56,11 +56,12 @@ end
 def create_orders
   status = %w(ordered paid cancelled completed)
   registered_users = User.joins(:roles).where("roles.name" => "registered_user")
-  .each do |user|
-
-    order = Order.create(status: status.sample, user_id: user.id, drone: [0, 1, 2, 4].sample)
-    (rand(3) + 1).times { create_line_items(order) }
-    puts "Created order #{order.id}"
+  registered_users.each do |user|
+    10.times do
+      order = Order.create(status: status.sample, user_id: user.id, drone: [0, 1, 2, 3].sample)
+      (rand(3) + 1).times { create_line_items(order) }
+      puts "Created order #{order.id}"
+    end
   end
 end
 
@@ -91,6 +92,7 @@ def seed
     create_store(store_admins.pop, category)
     create_store(store_admins.pop, category)
   end
+  create_orders
 end
 
 seed

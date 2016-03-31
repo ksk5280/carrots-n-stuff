@@ -1,16 +1,16 @@
 <div class = "row">
-  <div class = "padded-bottom text-center">
-  <h3><%= link_to "All Orders", orders_path %></h3>
+  <div class = "padded-top text-center">
+  <h1><%= link_to "All Orders", orders_path %></h1>
   </div>
 </div>
 <div class = "row">
   <div class = "col-md-6 col-md-offset-3">
     <h2>Order #<%= @order.id %></h2>
     <%= render partial: "orders/status" %>
+    <%= render partial: "shared/drone_button" if @order.unrequested?  %>
   </div>
 </div>
 <div class="items row padded-top">
   <%= render partial: "orders/line_item", collection: @order.line_items %>
 </div>
 <%= render partial: "orders/total" %>
-<%= render partial: "shared/drone_button" if @order.unrequested? %>
