@@ -53,6 +53,25 @@ def create_item(store, category, image)
   puts "Created #{item.title}."
 end
 
+def create_orders
+  status = %w(ordered paid cancelled completed)
+  registered_users = User.joins(:roles).where("roles.name" => "registered_user")
+  registered_users.each do |user|
+    10.times do
+      order = Order.create(status: status.sample, user_id: user.id, drone: [0, 1, 2, 3].sample)
+      (rand(3) + 1).times { create_line_items(order) }
+      puts "Created order #{order.id}"
+    end
+  end
+end
+
+def create_line_items(order)
+  item_id = (1..500).to_a.sample
+  quantity = (1..10).to_a.sample
+  line_item = LineItem.create(order_id: order.id, item_id: Item.find(item_id).id, quantity: quantity)
+  puts "Created line item #{line_item.id}"
+end
+
 def address
   Faker::Address.street_address + " " + Faker::Address.city + ", " + Faker::Address.state + " USA"
 end
@@ -73,6 +92,7 @@ def seed
     create_store(store_admins.pop, category)
     create_store(store_admins.pop, category)
   end
+  create_orders
 end
 
 seed
