@@ -30,20 +30,23 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
-    if params[:drone]
+    if current_user.store
+      store = Store.find(current_user.store.id)
+      @order = store.orders.find(params[:id])
       @order.update(drone: params[:drone].to_i)
-      flash[:success] = "Order ##{@order.id} is #{@order.drone}."
-      if current_user.store
-        Drone.request_drone()
-        redirect_to admin_order_path(@order.id)
-      else
-        redirect_to order_path(@order.id)
-      end
+      Drone.request_drone() if params[:drone].to_i == 3
+      redirect_to admin_order_path(@order.id)
     else
-      @order.update(status: params[:status])
-      flash[:success] = "Order ##{@order.id} has been #{@order.status}."
-      redirect_to dashboard_path
+      @order = current_user.orders.find(params[:id])
+      if params[:drone]
+        @order.update(drone: params[:drone].to_i)
+        flash[:success] = "Order ##{@order.id} is #{@order.drone}."
+        redirect_to order_path(@order.id)
+      else
+        @order.update(status: params[:status])
+        flash[:success] = "Order ##{@order.id} has been #{@order.status}."
+        redirect_to dashboard_path
+      end
     end
   end
 end
