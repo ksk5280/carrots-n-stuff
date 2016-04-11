@@ -42,9 +42,9 @@ class StoresController < ApplicationController
   end
 
   def destroy
-    store = Store.find_by(slug: params[:id])
+    store = current_user.store
+    destroy_role_dependents(store)
     store.destroy
-    UserRole.where(user_id: current_user.id).find_by(role_id: Role.find_by(name: "store_admin").id).destroy
     flash[:success] = "Store has been successfully deleted."
     redirect_to dashboard_path
   end
