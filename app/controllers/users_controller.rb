@@ -29,24 +29,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.store_admin? && params[:status] == "1"
-      user = User.find(params[:user_id].to_i)
-      user.update_attribute("status", params[:status].to_i)
-      user.roles << Role.find_by(name: "store_manager")
-      flash[:success] = "#{user.first_name} #{user.last_name} is now a #{user.store.name} team member."
-      redirect_to dashboard_path
-    elsif params[:status] == "0"
-      current_user.update_attribute("status", params[:status].to_i)
-      current_user.update_attribute("store_id", params[:store_id])
-      flash[:success] = "Your application has been submitted."
-      store = Store.find(params[:store_id])
-      redirect_to store_root_path(store.slug)
-    elsif params[:status] == "2"
-      user = User.find(params[:user_id].to_i)
-      user.update_attribute("status", nil)
-      UserRole.where(user_id: user.id).find_by(role_id: Role.find_by(name: "store_manager").id).destroy
-      flash[:success] = "#{user.first_name} #{user.last_name} has been fired"
-      redirect_to dashboard_path
+    if params[:status]
+      status_manager = UserStatusManager.new(current_user, params)
+      path, flash[:success] = status_manager.status_parse
+      redirect_to path
     else
       @user.update(user_params)
       if @user.save
