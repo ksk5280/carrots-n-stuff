@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  include OrdersHelper
+  
   def index
     if current_user
       @orders = current_user.orders
@@ -34,7 +36,7 @@ class OrdersController < ApplicationController
       store = Store.find(current_user.store.id)
       @order = store.orders.find(params[:id])
       @order.update(drone: params[:drone].to_i)
-      Drone.request_drone() if params[:drone].to_i == 3
+      Drone.request_drone if launch_drone?
       redirect_to admin_order_path(@order.id)
     else
       @order = current_user.orders.find(params[:id])
