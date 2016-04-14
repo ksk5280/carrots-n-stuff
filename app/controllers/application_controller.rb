@@ -37,10 +37,6 @@ class ApplicationController < ActionController::Base
     @top_categories ||= Category.take(4)
   end
 
-  def launch_drone?
-    params[:drone].to_i == 3
-  end
-
   private
     def authorized?
       current_permission.allow?
