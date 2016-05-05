@@ -1,6 +1,6 @@
-# The Pivot
+# The Pivot - Farmer's Market
 
-### Turing Module 3 -- Three-pereson project
+### Turing Module 3 -- Three-person project
 
 This project builds upon an existing implementation of an e-commerce site [Lucky Charms](https://github.com/ksk5280/lucky-charms). The original site was transformed from an individual e-commerce site selling luck into a marketplace for local produce that handles multiple, simultaneous businesses. 
 
