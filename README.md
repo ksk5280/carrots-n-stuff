@@ -4,6 +4,10 @@
 
 This project builds upon an existing implementation of an e-commerce site [Lucky Charms](https://github.com/ksk5280/lucky-charms). The original site was transformed from an individual e-commerce site selling luck into a marketplace for local produce that handles multiple, simultaneous businesses. 
 
+* [Original Assignment](https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.md)
+* [Lucky Charms Website](https://polar-reef-22111.herokuapp.com)
+* [Carrots 'n Stuff Website](karrots-n-stuff.herokuapp.com)
+
 
 ## <a name="learning-goals"></a> Learning Goals
 
