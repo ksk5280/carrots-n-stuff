@@ -6,7 +6,7 @@ This project builds upon an existing implementation of an e-commerce site [Lucky
 
 * [Original Assignment](https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.md)
 * [Lucky Charms Website](https://polar-reef-22111.herokuapp.com)
-* [Carrots 'n Stuff Website](karrots-n-stuff.herokuapp.com)
+* [Carrots 'n Stuff Website](https://karrots-n-stuff.herokuapp.com)
 
 
 ## <a name="learning-goals"></a> Learning Goals
